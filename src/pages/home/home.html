@@ -29,9 +29,9 @@
         </span>
         &nbsp;{{p.author.loginname}}
       </p>
-      <h2>
+      <h3>
         {{p.title}}
-      </h2>
+      </h3>
       <p>{{p.content}}</p>
     </ion-item>
     <ion-infinite-scroll *ngIf="topics.hasMore" (ionInfinite)="doInfinite($event)">

@@ -20,10 +20,14 @@ interface Topic{
 export class TopicPage{
   public topic:Topic;
   public id:string;
+  private tabBarElement:any;
 
   constructor(private dataApi:DataApi,
               private nav:NavController,
               private navParams:NavParams){
+    
+    this.tabBarElement = document.querySelector(".tabbar.show-tabbar");
+
     this.id = this.navParams.get('id');
     this.topic={
         fetching:false,
@@ -33,6 +37,7 @@ export class TopicPage{
   }
 
   ngOnInit(){
+    this.onPageWillEnter();
     this.getTopic();
   }
 
@@ -44,6 +49,7 @@ export class TopicPage{
   }
 
   goBack() {
+    this.onPageWillLeave();
     this.nav.pop();
   }
 
@@ -52,6 +58,17 @@ export class TopicPage{
       name:this.topic.data.author.loginname
     });
   }
+
+  onPageWillEnter(){
+        this.tabBarElement.style.display = 'none';
+  }
+
+    onPageWillLeave()
+    {
+
+        this.tabBarElement.style.display = 'flex';
+
+    }
 
  
 }
