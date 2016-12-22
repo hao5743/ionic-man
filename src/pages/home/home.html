@@ -1,17 +1,67 @@
 <ion-header>
-  <ion-navbar>
+ <ion-navbar>
     <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content>
+ 
+  <ion-refresher (ionRefresh)="pullToRefresh($event)" style="border: none">
+    <ion-refresher-content
+      pullingIcon="ios-arrow-round-down"
+      pullingText="下拉刷新"
+      refreshingSpinner="ios"
+      refreshingText="正在刷新...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+    <ion-item *ngFor="let p of topics.data" (click)="showInfo(p)">
+       <ion-thumbnail item-left>
+        <img src="{{p.author.avatar_url}}" alt="没有图片">
+      </ion-thumbnail>
+       <p>
+        <span class="good" *ngIf='p.good'>精华
+        </span>
+        <span class="top" *ngIf='p.top'>置顶
+        </span>
+        <span class="tab">{{translate(p.tab)}}
+        </span>
+        &nbsp;{{p.author.loginname}}
+      </p>
+      <h2>
+        {{p.title}}
+      </h2>
+     
+      <p>{{p.content}}</p>
+    
+     
+    
+    </ion-item>
+    <ion-infinite-scroll *ngIf="topics.hasMore" (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="ios"
+        loadingText="正在加载更多...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+  </ion-list>
+
+
+
+
+
+   <ion-fab  right edge >
+   <button ion-fab mini>全部</button>
+   <ion-fab-list side="bottom">
+     <button ion-fab>分享</button>
+     <button ion-fab>问答</button>
+     <button ion-fab>招聘</button>
+   </ion-fab-list>
+   <ion-fab-list side="left">
+     <button ion-fab>全部</button>
+     <button ion-fab>精华</button>
+   </ion-fab-list>
+ </ion-fab>
+
 </ion-content>

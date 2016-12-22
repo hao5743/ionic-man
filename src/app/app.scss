@@ -14,3 +14,25 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.top{
+    background: #387ef5;
+    color:white;
+    border-radius: 7px;
+    padding:5px;
+    margin:4px;
+}
+.good{
+    background: #32db64;
+    color:white;
+    border-radius: 7px;
+    padding:5px;
+    margin:4px;
+}
+.tab{
+     background: lightcoral;
+    color:white;
+    border-radius: 7px;
+    padding:5px;
+    margin:4px;
+}

@@ -1,0 +1,27 @@
+<ion-header class='page-topic'>
+  <ion-toolbar>
+    <ion-buttons >
+      <button ion-button clear icon-only color='primary' (click)="goBack()">
+        <ion-icon name="ios-arrow-back"></ion-icon>
+      </button>&nbsp;&nbsp;&nbsp;
+      <button ion-button clear icon-left small color='dark'>
+        <img class="imgIcon-in-header" src="{{topic.data.author.avatar_url}}">
+        &nbsp;&nbsp;{{topic.data.author.loginname}}
+      </button>
+    </ion-buttons>
+
+      <ion-buttons right>
+      <button ion-button clear icon-only color='secondary' (click)="goBack()">
+        <ion-icon name="ios-more"></ion-icon>
+      </button>&nbsp;&nbsp;&nbsp;
+ 
+    </ion-buttons>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+<h2>{{topic.data.title}}</h2>
+<div [innerHTML]="topic.data.content"></div>
+</ion-content>
