@@ -52,10 +52,14 @@ export class HomePage {
     })
   }
 
+  refreshTopics(){
+    this.topics.data=[];
+    this.pagination.page=0;
+    return this.getTopics();
+  }
+
   pullToRefresh(refresher) {
-     this.topics.data = [];
-     this.pagination.page = 0;
-     this.getTopics().then(res=>refresher.complete());
+     this.refreshTopics().then(res=>refresher.complete());
   }
 
   doInfinite(infiniteScroll) {
@@ -74,6 +78,15 @@ export class HomePage {
     if(p=='share') return '分享';
     else if(p=='ask') return '问答';
     else if(p=='job') return '招聘';
+    else if(p=='all') return '全部';
+    else if(p=='good') return '精华';
+  }
+
+  setTab(tab){
+    if(this.pagination.tab!==tab){
+      this.pagination.tab = tab;
+    }
+    this.refreshTopics();
   }
 
   

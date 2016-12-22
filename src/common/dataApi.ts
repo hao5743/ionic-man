@@ -54,7 +54,10 @@ export class DataApi {
   updateTopic(obj):any{
       return this.api.post('/topics/update',obj);
   }
-
+  
+  getUser(name):any{
+    return this.api.get('/user/'+name);
+  }
 
 }
 

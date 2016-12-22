@@ -3,6 +3,7 @@ import {NavController,AlertController,NavParams} from 'ionic-angular';
 import 'rxjs/add/operator/map';
 import { TopicInterface } from '../../interfaces/index';
 import { DataApi,Api,Config } from '../../common/index';
+import { UserPage } from '../user/user'
 
 
 interface Topic{
@@ -38,11 +39,18 @@ export class TopicPage{
   getTopic(){
     return this.dataApi.getTopic(this.id).then((res)=>{
         this.topic.data = res.data;
+        console.log(res.data);
     })
   }
 
   goBack() {
     this.nav.pop();
+  }
+
+  goUser(){
+    this.nav.push(UserPage, {
+      name:this.topic.data.author.loginname
+    });
   }
 
  

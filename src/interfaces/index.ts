@@ -5,4 +5,5 @@
 export * from "./topicSp.interface";
 export * from "./topic.interface";
 export * from "./reply.interface";
+export * from "./user.interface";
 

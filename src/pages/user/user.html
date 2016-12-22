@@ -1,0 +1,16 @@
+<ion-header class='page-topic'>
+  <ion-toolbar>
+    <ion-buttons >
+      <button ion-button clear icon-only color='primary' (click)="goBack()">
+        <ion-icon name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>{{name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <h2>{{user.data.loginname}}</h2>
+    <p>{{user.data.score}}></p>
+    <p>github: {{user.data.githubUsername}}></p>
+</ion-content>
