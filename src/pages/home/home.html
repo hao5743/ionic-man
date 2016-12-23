@@ -4,7 +4,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="page-home">
  
   <ion-refresher (ionRefresh)="pullToRefresh($event)" style="border: none">
     <ion-refresher-content
@@ -33,6 +33,9 @@
         {{p.title}}
       </h3>
       <p>{{p.content}}</p>
+      <p class="visit_count"> 
+        {{p.visit_count}}人阅读&nbsp;&nbsp;{{p.reply_count}}人回复
+      </p>
     </ion-item>
     <ion-infinite-scroll *ngIf="topics.hasMore" (ionInfinite)="doInfinite($event)">
       <ion-infinite-scroll-content

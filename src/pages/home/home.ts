@@ -89,5 +89,12 @@ export class HomePage {
     this.refreshTopics();
   }
 
+  ionViewWillLoad() {
+    console.log("I'm alive!");
+  }
+  ionViewWillLeave() {
+    console.log("Looks like I'm about to leave :(");
+  }
+
   
 }

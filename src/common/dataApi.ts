@@ -23,6 +23,7 @@ export class DataApi {
  *  accesstoken String 当需要知道一个主题是否被特定用户收藏时，才需要带此参数。会影响返回值中的 is_collect 值
  */
   getTopic(id):any{
+    console.log('/topic/'+id);
     return this.api.get('/topic/'+id)
   }
 

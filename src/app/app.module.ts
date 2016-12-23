@@ -7,6 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TopicPage } from '../pages/topic/topic';
 import { UserPage } from '../pages/user/user';
+import { TestPipe } from '../common/pipe';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { UserPage } from '../pages/user/user';
     HomePage,
     TabsPage,
     TopicPage,
-    UserPage
+    UserPage,
+    TestPipe
   ],
   imports: [
     IonicModule.forRoot(MyApp)

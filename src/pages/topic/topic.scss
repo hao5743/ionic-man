@@ -4,4 +4,64 @@
         height: 20px;
         border-radius: 15px
     }
+    .input-in-footer{
+       padding:0 2px 0 2px; 
+       height:30px; 
+       line-height:30px;
+       border: none;
+       font-size: small;
+       width: 98%;
+    }
+    .input-div{
+        border: solid;
+        border-color: darkgray;
+        border-width: 1px;
+        border-radius: 3px;
+        width: 100%;
+    }
+    .icon-size{
+        font-size: small;
+    }
+    .reply{
+         .icon-button{
+                font-size: 24px;
+                color:#387ef5;
+                padding-bottom: 20px;
+            }
+        .reply-item{
+           
+            .item-inner{
+                border:none;
+                margin-bottom: -22px;
+            }
+        }
+        .reply-content{
+             padding:0 16px 0 16px;
+        }
+        .reply-div{
+            border-bottom: solid;
+            border-width: 5px;
+            border-color: lightgray;
+            padding:10px 0 10px 0;
+        }
+         .comments-div{
+             margin:0 16px 0 12px;
+             padding:3px 5px 3px 5px;
+             border-radius: 8px;
+             background: #eff9eb;
+             border-color: lightgray;
+             .comment-item{
+                 padding:3px 0 3px 0;
+                border-top: dashed;
+                border-width: 1px;
+                border-color: gray;
+                .imgIcon-in-comment{
+                    width: 16px;
+                    height: 16px;
+                    border-radius: 15px
+                }
+             }
+        }
+        
+    }
 }

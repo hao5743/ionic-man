@@ -17,7 +17,92 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content  class='page-topic' padding>
 <h2>{{topic.data.title}}</h2>
 <div [innerHTML]="topic.data.content"></div>
+
+<div class="reply">
+  <ion-item-divider>
+    <span style="color:red;font-size: small">回复&nbsp;{{topic.data.replies.length}}</span>
+  </ion-item-divider>
+  <ion-list>
+      <div *ngFor="let p of topic.data.replies; let i =index;" class="reply-div">
+        <ion-item class="reply-item">
+          <ion-avatar item-left (click)="goUser(p.data.author.loginname)">
+            <img src="{{p.data.author.avatar_url}}" alt="没有图片">
+          </ion-avatar>
+          <p><b>
+            <a (click)="goUser(p.data.author.loginname)">{{p.data.author.loginname}}</a>
+            <span>{{i+1}}楼</span>
+          </b></p>
+          <p>{{p.data.create_at | date:'MM/dd HH:mm'}}</p>
+          <button ion-button clear icon-only small color='positive' item-right (click)="makeReply(p.data)">
+           <ion-icon class="icon-button" name="ios-chatbubbles-outline"></ion-icon>
+          </button>
+          <button ion-button clear icon-only small color='positive' item-right (click)="makeUp(p.data)">
+            <ion-icon class="icon-button" name="ios-thumbs-up-outline"></ion-icon>
+          </button>
+         
+        </ion-item>
+        <div class="reply-content">
+          <div [innerHTML]="p.data.content"></div>
+        </div>
+
+        <div class="comments-div" *ngIf="p.comments">
+          <p>
+            有{{p.comments.length}}条回复
+          </p>
+          <div *ngFor="let c of p.comments" class="comment-item">
+            <b> 
+              <img class="imgIcon-in-comment" src="{{c.author.avatar_url}}">
+              &nbsp;
+              <a (click)="goUser(c.author.loginname)">
+                {{c.author.loginname}}
+              </a>：
+            </b>
+            <span style="float: right">
+                <button ion-button clear icon-only color='positive' item-right (click)="makeReply(c)">
+                  <ion-icon class="icon-button" name="ios-chatbubbles-outline"></ion-icon>
+                </button>
+                &nbsp;&nbsp;
+                <button ion-button clear icon-only color='positive' item-right (click)="makeUp(c)">
+                  <ion-icon class="icon-button" name="ios-thumbs-up-outline"></ion-icon>
+                </button>
+            </span>
+          
+            <span [innerHTML]="c.content"></span>
+          </div>
+        </div>
+        
+
+      </div>
+  </ion-list>
+</div>
+
 </ion-content>
+
+<ion-footer class='page-topic' no-border>
+  <ion-toolbar >
+    <div class="input-div">
+      <input class="input-in-footer" type="text" placeholder="说说你的想法">
+    </div>
+   <ion-buttons start>
+      
+   </ion-buttons>
+    <ion-buttons end>
+       <button ion-button clear icon-right color='primary' (click)="makeReply()">
+        <ion-icon name="ios-send-outline"></ion-icon>
+        <span>发送</span>
+      </button>&nbsp;&nbsp;
+      <button ion-button clear icon-only color='primary' (click)="scrollToReply()">
+        <ion-icon name="ios-chatboxes-outline"></ion-icon>
+      </button>&nbsp;&nbsp;&nbsp;
+      <button ion-button clear icon-only color='primary' (click)="makeCollect()">
+        <ion-icon name="ios-heart-outline"></ion-icon>
+      </button>&nbsp;&nbsp;&nbsp;
+      <button ion-button clear icon-only color='primary' (click)="goBack()">
+        <ion-icon name="ios-share-outline"></ion-icon>
+      </button>&nbsp;&nbsp;&nbsp;
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
