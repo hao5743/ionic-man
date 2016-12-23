@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {NavController,AlertController,NavParams} from 'ionic-angular';
 import 'rxjs/add/operator/map';
 import { TopicInterface, ReplyInterface } from '../../interfaces/index';
@@ -79,7 +79,6 @@ export class TopicPage{
   }
 
   goBack() {
-    this.showTabBar();
     this.nav.pop();
   }
 
@@ -92,8 +91,7 @@ export class TopicPage{
   ionViewWillLoad() {
      this.tabBarElement.style.display = 'none';
   }
-
-  showTabBar(){
+  ionViewWillUnload() {
      this.tabBarElement.style.display = 'flex';
   }
 

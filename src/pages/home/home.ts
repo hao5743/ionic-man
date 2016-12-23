@@ -16,22 +16,18 @@ interface TopicsInterface {
   templateUrl: 'home.html'
 })
 export class HomePage {
-
   private pagination:any={
     page:0,
     limit:20,
     tab:'all',
     mdrender:false
   }
-
   private topics:TopicsInterface={
     fetching:false,
     hasMore:true,
     data:[]
   }
-
   constructor(public navCtrl: NavController, public dataApi: DataApi) {
-
   }
 
   ngOnInit() {
@@ -89,12 +85,10 @@ export class HomePage {
     this.refreshTopics();
   }
 
-  ionViewWillLoad() {
-    console.log("I'm alive!");
+  ionViewWillEnter() {
   }
   ionViewWillLeave() {
     console.log("Looks like I'm about to leave :(");
   }
-
   
 }

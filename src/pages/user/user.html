@@ -1,16 +1,76 @@
 <ion-header class='page-topic'>
-  <ion-toolbar>
+  <!--<ion-toolbar>
     <ion-buttons >
       <button ion-button clear icon-only color='primary' (click)="goBack()">
         <ion-icon name="ios-arrow-back"></ion-icon>
       </button>
     </ion-buttons>
     <ion-title>{{name}}</ion-title>
-  </ion-toolbar>
+  </ion-toolbar>-->
+  <ion-navbar>
+     <ion-title>{{name}}</ion-title>
+  </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <ion-item>
+    <ion-avatar item-left>
+      <img src="{{user.data.avatar_url}}">
+    </ion-avatar>
     <h2>{{user.data.loginname}}</h2>
-    <p>{{user.data.score}}></p>
     <p>github: {{user.data.githubUsername}}></p>
+  </ion-item>
+  <ion-item>
+    <p>账号注册于{{user.data.create_at |date:'yyyy/MM/dd HH:mm'}}</p>
+    <p>积分：{{user.data.score}}分</p> 
+  </ion-item>
+  <div padding>
+    <ion-segment [(ngModel)]="state">
+      <ion-segment-button value="recent">
+        发表话题
+      </ion-segment-button>
+      <ion-segment-button value="reply">
+        参与话题
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="state">
+      <ion-list  *ngSwitchCase="'recent'">
+       <ion-list-header>
+          发表话题
+      </ion-list-header>
+      <ion-item *ngFor="let p of user.data.recent_topics" (click)="goTopic(p)">
+        <ion-avatar item-left>
+          <img src="{{p.author.avatar_url}}" alt="没有图片">
+        </ion-avatar>
+        <h3>
+          {{p.title}}
+        </h3>
+        <p> {{p.author.loginname}}&nbsp;
+          {{p.last_reply_at | date:'yyyy/MM/dd HH:mm'}}
+        </p>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'reply'">
+       <ion-list-header>
+          参与话题
+      </ion-list-header>
+    <ion-item *ngFor="let p of user.data.recent_replies" (click)="goTopic(p)">
+       <ion-avatar item-left>
+        <img src="{{p.author.avatar_url}}" alt="没有图片">
+      </ion-avatar>
+      <h3>
+        {{p.title}}
+      </h3>
+      <p> {{p.author.loginname}}&nbsp;
+        {{p.last_reply_at | date:'yyyy/MM/dd HH:mm'}}
+      </p>
+    </ion-item>
+  </ion-list>
+  </div>
+    
+  
+   
 </ion-content>

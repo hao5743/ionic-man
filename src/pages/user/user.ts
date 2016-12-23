@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {NavController,AlertController,NavParams} from 'ionic-angular';
+import {NavController,NavParams} from 'ionic-angular';
 import 'rxjs/add/operator/map';
 import { UserInterface } from '../../interfaces/index';
 import { DataApi,Api,Config } from '../../common/index';
+import { TopicPage } from '../topic/topic';
 
 interface User{
     fetching:boolean,
@@ -21,10 +22,14 @@ export class UserPage{
     data:{} as UserInterface  
   };
   public name:string;
+
+  public state:string = "recent";  
+  private tabBarElement:any;
   constructor(private dataApi:DataApi,
               private nav:NavController,
               private navParams:NavParams){
     this.name = this.navParams.get('name');
+    this.tabBarElement = document.querySelector(".tabbar.show-tabbar");
   }
 
   ngOnInit(){
@@ -41,5 +46,20 @@ export class UserPage{
   goBack() {
     this.nav.pop();
   }
+
+  goTopic(p?){
+    console.log('detail',p);
+    this.nav.push(TopicPage, {
+      id: p.id,
+      data: p
+    });
+  }
  
+  ionViewWillLoad() {
+     this.tabBarElement.style.display = 'none';
+  }
+
+  // ionViewWillUnload() {
+  //    this.tabBarElement.style.display = 'flex';
+  // }
 }
