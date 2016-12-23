@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {NavController,AlertController,NavParams} from 'ionic-angular';
+import {Component,ViewChild} from '@angular/core';
+import {NavController,NavParams,Content} from 'ionic-angular';
 import 'rxjs/add/operator/map';
 import { TopicInterface, ReplyInterface } from '../../interfaces/index';
 import { DataApi,Api,Config } from '../../common/index';
@@ -21,6 +21,7 @@ export class TopicPage{
   public topic:Topic;
   public id:string;
   private tabBarElement:any;
+  @ViewChild(Content) content: Content;
 
   constructor(private dataApi:DataApi,
               private nav:NavController,
@@ -63,7 +64,7 @@ export class TopicPage{
             }
         })
         answer = repliesRoot.map(e=>{return {data:e, comments:map_temp.get(e)}});
-        console.log(answer);
+        // console.log(answer);
         this.topic.data.replies = answer;
         // 没有根的评论会返回undefined，可能是因为父评论被删除，而子评论没有级联删除导致的
         // 我们这里对于这种评论作删除处理，因为它的父评论被删除，他已经是垃圾评论
@@ -95,9 +96,18 @@ export class TopicPage{
      this.tabBarElement.style.display = 'flex';
   }
 
+
+
+//回到顶端
+  scrollToTop(){
+    this.content.scrollToTop();
+  }
+
 //展示评论
   scrollToReply(){
     console.log('scrollToReply');
+    let y = document.getElementById('replyDivider').offsetTop;
+    this.content.scrollTo(0,y,500);
   }
 //回复
   makeReply(item?){

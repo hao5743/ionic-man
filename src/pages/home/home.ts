@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { TopicInterface } from '../../interfaces/index';
 import { DataApi,Api,Config } from '../../common/index';

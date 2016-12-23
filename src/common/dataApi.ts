@@ -56,8 +56,12 @@ export class DataApi {
       return this.api.post('/topics/update',obj);
   }
   
-  getUser(name):any{
-    return this.api.get('/user/'+name);
+  getUser(loginname):any{
+    return this.api.get('/user/'+loginname);
+  }
+
+  getUserCollects(loginname):any{
+    return this.api.get('/topic_collect/'+loginname);
   }
 
 }

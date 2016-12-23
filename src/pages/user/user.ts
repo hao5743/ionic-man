@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {NavController,NavParams} from 'ionic-angular';
 import 'rxjs/add/operator/map';
 import { UserInterface } from '../../interfaces/index';
@@ -22,7 +22,7 @@ export class UserPage{
     data:{} as UserInterface  
   };
   public name:string;
-
+  public collects:any;
   public state:string = "recent";  
   private tabBarElement:any;
   constructor(private dataApi:DataApi,
@@ -34,12 +34,20 @@ export class UserPage{
 
   ngOnInit(){
     this.getUser();
+    this.getUserCollects();
   }
 
   getUser(){
     return this.dataApi.getUser(this.name).then((res)=>{
         this.user.data = res.data;
         console.log(res.data);
+    })
+  }
+
+  getUserCollects(){
+    return this.dataApi.getUserCollects(this.name).then((res)=>{
+        this.collects = res.data;
+        console.log(this.collects);
     })
   }
 

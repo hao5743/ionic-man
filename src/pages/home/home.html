@@ -21,20 +21,18 @@
         <img src="{{p.author.avatar_url}}" alt="没有图片">
       </ion-thumbnail>
        <p>
-        <span class="good" *ngIf='p.good'>精华
-        </span>
-        <span class="top" *ngIf='p.top'>置顶
-        </span>
-        <span class="tab">{{translate(p.tab)}}
-        </span>
-        &nbsp;{{p.author.loginname}}
+        <span class="good" *ngIf='p.good'>精华</span>
+        <span class="top" *ngIf='p.top'>置顶</span>
+        <span class="tab">{{p.tab | topictab}}</span>
+        {{p.last_reply_at | moment:"auto"}}更新
       </p>
       <h3>
         {{p.title}}
       </h3>
       <p>{{p.content}}</p>
       <p class="visit_count"> 
-        {{p.visit_count}}人阅读&nbsp;&nbsp;{{p.reply_count}}人回复
+        {{p.visit_count}}人阅读&nbsp;&nbsp;{{p.reply_count}}人回复&nbsp;&nbsp;<br>
+        {{p.author.loginname}}发表于{{p.create_at | moment:"auto"}}
       </p>
     </ion-item>
     <ion-infinite-scroll *ngIf="topics.hasMore" (ionInfinite)="doInfinite($event)">

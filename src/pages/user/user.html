@@ -27,43 +27,58 @@
   <div padding>
     <ion-segment [(ngModel)]="state">
       <ion-segment-button value="recent">
-        发表话题
+        发表的
       </ion-segment-button>
       <ion-segment-button value="reply">
-        参与话题
+        参与的
+      </ion-segment-button>
+      <ion-segment-button value="collect">
+        收藏的
       </ion-segment-button>
     </ion-segment>
   </div>
 
   <div [ngSwitch]="state">
+    
       <ion-list  *ngSwitchCase="'recent'">
        <ion-list-header>
-          发表话题
+          发表的
       </ion-list-header>
       <ion-item *ngFor="let p of user.data.recent_topics" (click)="goTopic(p)">
         <ion-avatar item-left>
           <img src="{{p.author.avatar_url}}" alt="没有图片">
         </ion-avatar>
-        <h3>
-          {{p.title}}
-        </h3>
-        <p> {{p.author.loginname}}&nbsp;
-          {{p.last_reply_at | date:'yyyy/MM/dd HH:mm'}}
+        <p style="color:black"><b>{{p.title}}</b></p>
+        <p> {{p.author.loginname}}&nbsp;&nbsp;
+          更新于{{p.last_reply_at | moment : "fromnow"}}
         </p>
       </ion-item>
     </ion-list>
 
     <ion-list *ngSwitchCase="'reply'">
        <ion-list-header>
-          参与话题
+          参与的
       </ion-list-header>
     <ion-item *ngFor="let p of user.data.recent_replies" (click)="goTopic(p)">
        <ion-avatar item-left>
         <img src="{{p.author.avatar_url}}" alt="没有图片">
       </ion-avatar>
-      <h3>
-        {{p.title}}
-      </h3>
+     <p style="color:black"><b>{{p.title}}</b></p>
+      <p> {{p.author.loginname}}&nbsp;
+        {{p.last_reply_at | date:'yyyy/MM/dd HH:mm'}}
+      </p>
+    </ion-item>
+  </ion-list>
+
+    <ion-list *ngSwitchCase="'collect'">
+       <ion-list-header>
+          收藏的
+      </ion-list-header>
+    <ion-item *ngFor="let p of collects" (click)="goTopic(p)">
+       <ion-avatar item-left>
+        <img src="{{p.author.avatar_url}}" alt="没有图片">
+      </ion-avatar>
+     <p style="color:black"><b>{{p.title}}</b></p>
       <p> {{p.author.loginname}}&nbsp;
         {{p.last_reply_at | date:'yyyy/MM/dd HH:mm'}}
       </p>

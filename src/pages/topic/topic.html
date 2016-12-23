@@ -1,30 +1,38 @@
 <ion-header class='page-topic'>
-   <ion-navbar>
-      <ion-buttons >
-        <button ion-button clear icon-left small color='dark' (click)="goUser()">
+  <ion-navbar>
+    <ion-buttons>
+      <button ion-button clear icon-left small color='dark' (click)="goUser()">
           <img class="imgIcon-in-header" src="{{topic.data.author.avatar_url}}">
           &nbsp;&nbsp;{{topic.data.author.loginname}}
         </button>
-      </ion-buttons>
-     <ion-title>{{name}}</ion-title>
-     <ion-buttons right>
-        <button ion-button clear icon-only color='secondary' (click)="goBack()">
+    </ion-buttons>
+    <ion-title>{{name}}</ion-title>
+    <ion-buttons right>
+      <button ion-button clear icon-only color='secondary' (click)="goBack()">
           <ion-icon name="ios-more"></ion-icon>
         </button>&nbsp;&nbsp;&nbsp;
-      </ion-buttons>
+    </ion-buttons>
   </ion-navbar>
-
 </ion-header>
-
-<ion-content  class='page-topic' padding>
-<h2>{{topic.data.title}}</h2>
-<div [innerHTML]="topic.data.content"></div>
-
-<div class="reply">
-  <ion-item-divider>
-    <span style="color:red;font-size: small">回复&nbsp;{{topic.data.replies.length}}</span>
-  </ion-item-divider>
-  <ion-list>
+<ion-content class='page-topic' padding>
+  <h2>{{topic.data.title}}</h2>
+  <p>
+    <span class="good" *ngIf='topic.data.good'>精华</span>
+    <span class="top" *ngIf='topic.data.top'>置顶</span>
+    <span class="tab">{{topic.data.tab | topictab}}</span>
+    <span class="text-num">{{topic.data.visit_count}}人阅读&nbsp;&nbsp;</span>
+    <a (click)="scrollToReply()">{{topic.data.reply_count}}人回复</a>
+  </p>
+  <p class="text-num">
+    发表于{{topic.data.create_at | date:'yyyy/MM/dd mm:HH'}}({{topic.data.create_at|moment:"fromnow"}})
+  </p>
+  <hr>
+  <div [innerHTML]="topic.data.content"></div>
+  <div class="reply">
+    <ion-item-divider id='replyDivider'>
+      <span style="color:red;font-size: small">回复&nbsp;{{topic.data.replies.length}}</span>
+    </ion-item-divider>
+    <ion-list>
       <div *ngFor="let p of topic.data.replies; let i =index;" class="reply-div">
         <ion-item class="reply-item">
           <ion-avatar item-left (click)="goUser(p.data.author.loginname)">
@@ -34,19 +42,18 @@
             <a (click)="goUser(p.data.author.loginname)">{{p.data.author.loginname}}</a>
             <span>{{i+1}}楼</span>
           </b></p>
-          <p>{{p.data.create_at | date:'MM/dd HH:mm'}}</p>
+          <p>{{p.data.create_at | moment:"auto"}}</p>
           <button ion-button clear icon-only small color='positive' item-right (click)="makeReply(p.data)">
            <ion-icon class="icon-button" name="ios-chatbubbles-outline"></ion-icon>
           </button>
-          <button ion-button clear icon-only small color='positive' item-right (click)="makeUp(p.data)">
+          <button ion-button clear icon-left small color='positive' item-right (click)="makeUp(p.data)">
             <ion-icon class="icon-button" name="ios-thumbs-up-outline"></ion-icon>
+            <span>{{p.data.ups.length}}</span>
           </button>
-         
         </ion-item>
         <div class="reply-content">
           <div [innerHTML]="p.data.content"></div>
         </div>
-
         <div class="comments-div" *ngIf="p.comments">
           <p>
             有{{p.comments.length}}条回复
@@ -57,39 +64,37 @@
               &nbsp;
               <a (click)="goUser(c.author.loginname)">
                 {{c.author.loginname}}
-              </a>：
+              </a>
+              &nbsp;
             </b>
-            <span style="float: right">
-                <button ion-button clear icon-only color='positive' item-right (click)="makeReply(c)">
+            <span>{{c.create_at|moment:"auto"}}</span>
+              ：
+            
+            <div style="float: right;">
+                <button style="margin: 0" ion-button clear icon-only color='positive' item-right (click)="makeReply(c)">
                   <ion-icon class="icon-button" name="ios-chatbubbles-outline"></ion-icon>
                 </button>
-                &nbsp;&nbsp;
-                <button ion-button clear icon-only color='positive' item-right (click)="makeUp(c)">
+                <button style="margin: 0" ion-button clear icon-left color='positive' item-right (click)="makeUp(c)">
                   <ion-icon class="icon-button" name="ios-thumbs-up-outline"></ion-icon>
+                 <span> {{c.ups.length}}</span>
                 </button>
-            </span>
-          
+            </div>
             <span [innerHTML]="c.content"></span>
           </div>
         </div>
-        
-
       </div>
-  </ion-list>
-</div>
-
+    </ion-list>
+  </div>
 </ion-content>
-
 <ion-footer class='page-topic' no-border>
-  <ion-toolbar >
+  <ion-toolbar>
     <div class="input-div">
       <input class="input-in-footer" type="text" placeholder="说说你的想法">
     </div>
-   <ion-buttons start>
-      
-   </ion-buttons>
+    <ion-buttons start>
+    </ion-buttons>
     <ion-buttons end>
-       <button ion-button clear icon-right color='primary' (click)="makeReply()">
+      <button ion-button clear icon-right color='primary' (click)="makeReply()">
         <ion-icon name="ios-send-outline"></ion-icon>
         <span>发送</span>
       </button>&nbsp;&nbsp;
@@ -99,7 +104,7 @@
       <button ion-button clear icon-only color='primary' (click)="makeCollect()">
         <ion-icon name="ios-heart-outline"></ion-icon>
       </button>&nbsp;&nbsp;&nbsp;
-      <button ion-button clear icon-only color='primary' (click)="goBack()">
+      <button ion-button clear icon-only color='primary' (click)="scrollToTop()">
         <ion-icon name="ios-share-outline"></ion-icon>
       </button>&nbsp;&nbsp;&nbsp;
     </ion-buttons>
