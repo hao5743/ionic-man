@@ -8,5 +8,6 @@ export interface ReplyInterface{
   content:string,
   ups:string[],
   create_at:string,
-  reply_id?:any
+  reply_id?:any,
+  myup?:boolean     //存储我是否点过赞
 }

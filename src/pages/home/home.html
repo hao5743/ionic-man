@@ -1,7 +1,16 @@
 <ion-header>
  <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>
+      {{pagination.tab | topictab}}
+      <span *ngIf="pagination.tab==='all'">话题</span>
+    </ion-title>
+    <ion-buttons start>
+        <!--<button ion-button clear icon-only color='dark' (click)="openLogin()">
+         登录
+        </button>-->
+    </ion-buttons>
   </ion-navbar>
+  
 </ion-header>
 
 <ion-content class="page-home">
@@ -20,20 +29,21 @@
        <ion-thumbnail item-left>
         <img src="{{p.author.avatar_url}}" alt="没有图片">
       </ion-thumbnail>
-       <p>
+       <p class="p1-in-item">
         <span class="good" *ngIf='p.good'>精华</span>
         <span class="top" *ngIf='p.top'>置顶</span>
         <span class="tab">{{p.tab | topictab}}</span>
-        {{p.last_reply_at | moment:"auto"}}更新
+        <span>{{p.author.loginname}}</span>
+        <span style="float: right;color:black">{{p.last_reply_at | moment:"auto"}}</span>
       </p>
-      <h3>
+      <h2 class="p-in-item">
         {{p.title}}
-      </h3>
-      <p>{{p.content}}</p>
-      <p class="visit_count"> 
-        {{p.visit_count}}人阅读&nbsp;&nbsp;{{p.reply_count}}人回复&nbsp;&nbsp;<br>
-        {{p.author.loginname}}发表于{{p.create_at | moment:"auto"}}
-      </p>
+      </h2>
+      <!--<p class="p-in-item">{{p.content}}</p>-->
+      <!--<p class="visit_count"> 
+        {{p.visit_count}}阅读&nbsp;{{p.reply_count}}回复&nbsp;
+        {{p.create_at | moment:"auto"}}创建
+      </p>-->
     </ion-item>
     <ion-infinite-scroll *ngIf="topics.hasMore" (ionInfinite)="doInfinite($event)">
       <ion-infinite-scroll-content
@@ -43,16 +53,16 @@
     </ion-infinite-scroll>
   </ion-list>
 
-   <ion-fab  right edge >
-   <button ion-fab mini>{{translate(pagination.tab)}}</button>
+   <ion-fab  middle right edge >
+   <button ion-fab clor="primary">{{translate(pagination.tab)}}</button>
    <ion-fab-list side="bottom">
-     <button ion-fab (click)='setTab("share")'>分享</button>
-     <button ion-fab (click)='setTab("ask")'>问答</button>
-     <button ion-fab (click)='setTab("job")'>招聘</button>
+     <button ion-fab color="sky" (click)='setTab("share")'>分享</button>
+     <button ion-fab color="primary" (click)='setTab("ask")'>求助</button>
+     <button ion-fab color="secondary" (click)='setTab("job")'>招聘</button>
    </ion-fab-list>
-   <ion-fab-list side="left">
-     <button ion-fab (click)='setTab("all")'>全部</button>
-     <button ion-fab (click)='setTab("good")'>精华</button>
+   <ion-fab-list side="top">
+     <button ion-fab color="secondary" (click)='setTab("all")'>全部</button>
+     <button ion-fab color="danger" (click)='setTab("good")'>精华</button>
    </ion-fab-list>
  </ion-fab>
 

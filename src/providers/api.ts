@@ -18,24 +18,21 @@ import 'rxjs/add/operator/toPromise';
 export class Api {
   private hostUrl;
   private requestOpts;
-
-  constructor(private http: Http, private config: Config) {
+  private config:Config;
+  constructor(private http: Http) {
     this.init();
   }
-
   private init() {
-    //init hosturl
+    //获取config单例一个实例
+    this.config = Config.getInstance();
     this.hostUrl = this.config.hostURL;
-    //init headers
     let headers = new Headers();
-    //config your request headers here
     // headers.append('Accept', '*/*');
     // headers.append('Cache-Control', 'no-cache');
     this.requestOpts = new RequestOptions({
       headers: headers
     });
   }
-
   private handleError(error: Response | any) {
     let errMsg: string;
     if (error instanceof Response) {
@@ -85,6 +82,20 @@ export class Api {
   }
   delete(url) {
     return this.http.delete(this.hostUrl + url, this.requestOpts)
+      .toPromise()
+      .then(res => res.json())
+      .catch(this.handleError);
+  }
+
+  readFromLocalJson(localUrl){
+    return this.http.get(localUrl, this.requestOpts)
+        .toPromise()
+        .then(res => res.json())
+        .catch(this.handleError);     
+  }
+
+  writeToLocalJson(localUrl, json){
+    return this.http.post(localUrl, json, this.requestOpts)
       .toPromise()
       .then(res => res.json())
       .catch(this.handleError);

@@ -1,13 +1,10 @@
 <ion-header class='page-topic'>
-  <!--<ion-toolbar>
-    <ion-buttons >
-      <button ion-button clear icon-only color='primary' (click)="goBack()">
-        <ion-icon name="ios-arrow-back"></ion-icon>
-      </button>
+  <ion-navbar hideBackButton="true">
+    <ion-buttons left>
+        <button ion-button clear icon-only color='dark' (click)="goBack()">
+         <ion-icon name="md-arrow-back"> </ion-icon>
+        </button>
     </ion-buttons>
-    <ion-title>{{name}}</ion-title>
-  </ion-toolbar>-->
-  <ion-navbar>
      <ion-title>{{name}}</ion-title>
   </ion-navbar>
 </ion-header>
@@ -18,7 +15,7 @@
       <img src="{{user.data.avatar_url}}">
     </ion-avatar>
     <h2>{{user.data.loginname}}</h2>
-    <p>github: {{user.data.githubUsername}}></p>
+    <p>github: {{user.data.githubUsername}}</p>
   </ion-item>
   <ion-item>
     <p>账号注册于{{user.data.create_at |date:'yyyy/MM/dd HH:mm'}}</p>

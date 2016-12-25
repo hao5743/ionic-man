@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      写文章
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-refresher (ionRefresh)="pullToRefresh($event)" style="border: none">
+    <ion-refresher-content
+      pullingIcon="ios-arrow-round-down"
+      pullingText="下拉刷新"
+      refreshingSpinner="ios"
+      refreshingText="正在获取">
+    </ion-refresher-content>
+  </ion-refresher>
+  
+  <div class="padding" *ngIf="!isLogin">
+    <p align="center">当前未登录，写文章可以暂时保存到草稿</p>
+  </div>
+
+  <ion-list>
+    <ion-list-header>草稿</ion-list-header>
+    
+    <ion-item-sliding *ngFor="let p of drafts;let i=index;">
+    <ion-item  (click)="openNewTopic(i)">
+      <p style="color:black"><b>{{p.title}}</b>
+          <span color="primary" style="float: right">{{p.tab| topictab}}</span>
+      </p>
+      <p>{{p.content}}<p>
+      <p> 
+        {{p.update_at | moment:'long'}}
+      </p>
+    </ion-item>
+    <ion-item-options side="left">
+      <button ion-button color="primary" (click)="openNewTopic(i)">
+        <ion-icon name="ios-eye-outline"></ion-icon>
+        查看
+      </button>
+      
+    </ion-item-options>
+    <ion-item-options side="right">
+      <button ion-button color="danger" (click)="deleteTopic(i)">
+        <ion-icon name="ios-trash-outline"></ion-icon>
+        删除
+      </button>
+    </ion-item-options>
+  </ion-item-sliding>
+ </ion-list>
+
+ <ion-fab middle right edge>
+    <button ion-fab color="primary">写</button>
+    <ion-fab-list side="left">
+      <button ion-fab color="primary" (click)="openNewType('share')">共享</button>
+    </ion-fab-list>
+     <ion-fab-list side="top">
+      <button ion-fab color="secondary" (click)="openNewType('ask')">求助</button>
+    </ion-fab-list>
+     <ion-fab-list side="bottom">
+      <button ion-fab color="sky" (click)="openNewType('job')">招聘</button>
+    </ion-fab-list>
+  </ion-fab>
+<!--
+  <div align='center' style="padding-top: 20px">
+      <button ion-button round (click)='openNewTopic()'>
+      新文章
+    </button>
+  </div>-->
+
+</ion-content>

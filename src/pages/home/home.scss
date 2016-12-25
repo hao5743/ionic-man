@@ -8,4 +8,19 @@
         height: 20px;
         border-radius: 15px
     }
+    .p1-in-item{
+        white-space: nowrap;
+        overflow: hidden;
+        height: 23px;
+        line-height: 23px;
+    }
+    .p-in-item{
+        height: 46px;
+        line-height: 23px;
+        overflow: hidden;
+        word-wrap:break-word; 
+        word-break:break-all;
+        white-space: normal;
+    }
+    
 }

@@ -2,8 +2,8 @@ import {Component} from '@angular/core';
 import {NavController,NavParams} from 'ionic-angular';
 import 'rxjs/add/operator/map';
 import { UserInterface } from '../../interfaces/index';
-import { DataApi,Api,Config } from '../../common/index';
-import { TopicPage } from '../topic/topic';
+import { DataApi } from '../../providers/index';
+import { TopicPage } from '../index';
 
 interface User{
     fetching:boolean,
@@ -12,7 +12,7 @@ interface User{
 
 @Component({
   selector: 'page-topic',
-  providers: [DataApi, Api, Config],
+  providers: [],
   templateUrl: 'user.html'
 })
 
@@ -63,11 +63,4 @@ export class UserPage{
     });
   }
  
-  ionViewWillLoad() {
-     this.tabBarElement.style.display = 'none';
-  }
-
-  // ionViewWillUnload() {
-  //    this.tabBarElement.style.display = 'flex';
-  // }
 }

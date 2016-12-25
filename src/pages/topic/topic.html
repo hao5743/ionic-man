@@ -1,17 +1,20 @@
 <ion-header class='page-topic'>
-  <ion-navbar>
+  <ion-navbar hideBackButton="true">
     <ion-buttons>
-      <button ion-button clear icon-left small color='dark' (click)="goUser()">
+        <button ion-button clear icon-only color='dark' (click)="goBack()">
+         <ion-icon name="md-arrow-back"> </ion-icon>
+        </button>
+        <button ion-button clear icon-left small color='dark' (click)="goUser()">
           <img class="imgIcon-in-header" src="{{topic.data.author.avatar_url}}">
           &nbsp;&nbsp;{{topic.data.author.loginname}}
         </button>
     </ion-buttons>
     <ion-title>{{name}}</ion-title>
-    <ion-buttons right>
+    <!--<ion-buttons right>
       <button ion-button clear icon-only color='secondary' (click)="goBack()">
           <ion-icon name="ios-more"></ion-icon>
         </button>&nbsp;&nbsp;&nbsp;
-    </ion-buttons>
+    </ion-buttons>-->
   </ion-navbar>
 </ion-header>
 <ion-content class='page-topic' padding>
@@ -46,10 +49,12 @@
           <button ion-button clear icon-only small color='positive' item-right (click)="makeReply(p.data)">
            <ion-icon class="icon-button" name="ios-chatbubbles-outline"></ion-icon>
           </button>
-          <button ion-button clear icon-left small color='positive' item-right (click)="makeUp(p.data)">
-            <ion-icon class="icon-button" name="ios-thumbs-up-outline"></ion-icon>
+          <button ion-button clear icon-left small item-right (click)="makeUp(p.data)">
+            <ion-icon *ngIf="p.data.myup" class="icon-button" name="ios-thumbs-up" ></ion-icon>
+            <ion-icon *ngIf="!p.data.myup" class="icon-button" name="ios-thumbs-up-outline"></ion-icon>
             <span>{{p.data.ups.length}}</span>
           </button>
+
         </ion-item>
         <div class="reply-content">
           <div [innerHTML]="p.data.content"></div>
@@ -71,11 +76,12 @@
               ：
             
             <div style="float: right;">
-                <button style="margin: 0" ion-button clear icon-only color='positive' item-right (click)="makeReply(c)">
+                <button style="margin: 0" ion-button clear icon-only item-right (click)="makeReply(c)">
                   <ion-icon class="icon-button" name="ios-chatbubbles-outline"></ion-icon>
                 </button>
-                <button style="margin: 0" ion-button clear icon-left color='positive' item-right (click)="makeUp(c)">
-                  <ion-icon class="icon-button" name="ios-thumbs-up-outline"></ion-icon>
+                <button style="margin: 0" ion-button clear icon-left item-right (click)="makeUp(c)">
+                  <ion-icon *ngIf="c.myup" class="icon-button" name="ios-thumbs-up"></ion-icon>
+                  <ion-icon *ngIf="!c.myup" class="icon-button" name="ios-thumbs-up-outline"></ion-icon>
                  <span> {{c.ups.length}}</span>
                 </button>
             </div>
@@ -88,24 +94,33 @@
 </ion-content>
 <ion-footer class='page-topic' no-border>
   <ion-toolbar>
-    <div class="input-div">
+    <!--<div class="input-div">
       <input class="input-in-footer" type="text" placeholder="说说你的想法">
-    </div>
+    </div>-->
     <ion-buttons start>
-    </ion-buttons>
-    <ion-buttons end>
       <button ion-button clear icon-right color='primary' (click)="makeReply()">
         <ion-icon name="ios-send-outline"></ion-icon>
+        <span>&nbsp;说说你的想法</span>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <!--<button ion-button clear icon-right color='primary' (click)="makeReply()">
+        <ion-icon name="ios-send-outline"></ion-icon>
         <span>发送</span>
-      </button>&nbsp;&nbsp;
+      </button>&nbsp;&nbsp;-->
       <button ion-button clear icon-only color='primary' (click)="scrollToReply()">
         <ion-icon name="ios-chatboxes-outline"></ion-icon>
+        <span>看评论</span>
       </button>&nbsp;&nbsp;&nbsp;
       <button ion-button clear icon-only color='primary' (click)="makeCollect()">
-        <ion-icon name="ios-heart-outline"></ion-icon>
+        <ion-icon *ngIf="topic.data.is_collect" name="ios-star"></ion-icon>
+        <ion-icon *ngIf="!topic.data.is_collect" name="ios-star-outline"></ion-icon>
       </button>&nbsp;&nbsp;&nbsp;
-      <button ion-button clear icon-only color='primary' (click)="scrollToTop()">
+      <!--<button ion-button clear icon-only color='primary' (click)="scrollToTop()">
         <ion-icon name="ios-share-outline"></ion-icon>
+      </button>&nbsp;&nbsp;&nbsp;-->
+       <button ion-button clear icon-only color='primary' (click)="scrollToTop()">
+        <ion-icon name="md-arrow-round-up"></ion-icon>
       </button>&nbsp;&nbsp;&nbsp;
     </ion-buttons>
   </ion-toolbar>

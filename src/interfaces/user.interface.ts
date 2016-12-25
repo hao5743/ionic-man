@@ -13,5 +13,6 @@ export interface UserInterface{
         },
         title:string,
         last_reply_at:string
-    }[]
+    }[],
+    token?:string
 }

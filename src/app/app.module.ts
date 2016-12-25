@@ -1,24 +1,24 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
-import { TopicPage } from '../pages/topic/topic';
-import { UserPage } from '../pages/user/user';
+import { WritePage,HomePage,TopicPage,UserPage,MePage,TabsPage,NewTopic,LoginPage } from '../pages/index';
 import { TestPipe,TopicTab,Moment } from '../pipe/index';
+import { Api,DataApi,Config,Local,Tip } from '../providers/index';
+
+import { Storage } from '@ionic/storage';
 
 @NgModule({
   declarations: [
     MyApp,
     //pages
-    AboutPage,
-    ContactPage,
+    MePage,
+    WritePage,
     HomePage,
     TabsPage,
     TopicPage,
     UserPage,
+    NewTopic,
+    LoginPage,
     //pipes
     TestPipe,
     TopicTab,
@@ -30,13 +30,23 @@ import { TestPipe,TopicTab,Moment } from '../pipe/index';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    MePage,
+    WritePage,
     HomePage,
     TabsPage,
     TopicPage,
-    UserPage
+    UserPage,
+    NewTopic,
+    LoginPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    Config,
+    Api,
+    Local,
+    DataApi,
+    Tip,
+    Storage
+  ]
 })
 export class AppModule {}

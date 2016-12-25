@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      编辑文章
+    </ion-title>
+    <ion-buttons right>
+      <button ion-button clear icon-left color='danger' (click)="cancel()">
+          <ion-icon name="ios-close"></ion-icon>
+        </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label>分类</ion-label>
+      <ion-select [(ngModel)]="input.tab">
+        <ion-option value="share" selected="true">分享</ion-option>
+        <ion-option value="ask">求助</ion-option>
+        <ion-option value="job">招聘</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>标题</ion-label>
+      <ion-input type="text" [(ngModel)]="input.title"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>内容</ion-label>
+      <ion-textarea rows="10" [(ngModel)]="input.content"></ion-textarea>
+    </ion-item>
+
+    <div align='center' style="padding-top: 20px">
+    <button ion-button round  (click)="upload()">
+      发布
+    </button>
+     <button ion-button round color="secondary" (click)="saveDraft()">
+      草稿
+    </button>
+      <button ion-button round color="light" (click)="cancel()">
+      取消
+    </button>
+    </div>
+  
+
+ </ion-list>
+
+</ion-content>

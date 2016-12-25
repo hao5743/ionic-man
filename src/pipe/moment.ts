@@ -21,6 +21,12 @@ export class Moment implements PipeTransform {
         case "date":
           ans = moment(value).format("YYYY/MM/DD");
           break;
+        case "long":
+        ans = moment(value).format("YYYY/MM/DD HH:mm:ss");
+        break;
+        case "short":
+        ans = moment(value).format("YY/M/D H:m:s");
+        break;
         default:
           ans = value;
       }

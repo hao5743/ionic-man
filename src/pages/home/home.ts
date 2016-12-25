@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,ModalController } from 'ionic-angular';
 import { TopicInterface } from '../../interfaces/index';
-import { DataApi,Api,Config } from '../../common/index';
-import { TopicPage } from '../topic/topic';
+import { DataApi } from '../../providers/index';
+import { TopicPage,LoginPage } from '../index';
 
 interface TopicsInterface {
   fetching:boolean,
@@ -12,7 +12,6 @@ interface TopicsInterface {
 
 @Component({
   selector: 'page-home',
-   providers: [DataApi, Api, Config],
   templateUrl: 'home.html'
 })
 export class HomePage {
@@ -27,7 +26,10 @@ export class HomePage {
     hasMore:true,
     data:[]
   }
-  constructor(public navCtrl: NavController, public dataApi: DataApi) {
+
+  constructor(public navCtrl: NavController,
+              private modalCtrl: ModalController,
+              public dataApi: DataApi) {
   }
 
   ngOnInit() {
@@ -88,7 +90,12 @@ export class HomePage {
   ionViewWillEnter() {
   }
   ionViewWillLeave() {
-    console.log("Looks like I'm about to leave :(");
+  }
+
+  openLogin(){
+    console.log('openlogin');
+     let modal = this.modalCtrl.create(LoginPage);
+     modal.present();
   }
   
 }

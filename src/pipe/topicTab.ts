@@ -12,7 +12,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 @Pipe({name: 'topictab'})
 export class TopicTab implements PipeTransform {
   transform(value): string {
-      let ch = ['分享','招聘','问答','精华','全部'];
+      let ch = ['分享','招聘','求助','精华','全部'];
       let en = ['share','job','ask','good','all'];
       return ch[en.indexOf(value)];
   }
