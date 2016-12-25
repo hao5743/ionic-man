@@ -95,7 +95,11 @@ export class DataApi {
     return this.api.post('/topic_collect/de_collect',obj);
   }
 
-
+  getMessages():Promise<any>{
+    let accesstoken = this.config.token;
+    let mdrender = true;
+    return this.api.get('/messages',{accesstoken,mdrender});
+  }
   
   getUser(loginname:string):any{
     return this.api.get('/user/'+loginname);

@@ -24,10 +24,10 @@
     <span class="top" *ngIf='topic.data.top'>置顶</span>
     <span class="tab">{{topic.data.tab | topictab}}</span>
     <span class="text-num">{{topic.data.visit_count}}人阅读&nbsp;&nbsp;</span>
-    <a (click)="scrollToReply()">{{topic.data.reply_count}}人回复</a>
+    <span class="text-num">{{topic.data.reply_count}}人回复</span>
   </p>
   <p class="text-num">
-    发表于{{topic.data.create_at | date:'yyyy/MM/dd mm:HH'}}({{topic.data.create_at|moment:"fromnow"}})
+    发表于{{topic.data.create_at | date:'yyyy/MM/dd mm:HH'}}&nbsp;({{topic.data.create_at|moment:"fromnow"}})
   </p>
   <hr>
   <div [innerHTML]="topic.data.content"></div>
@@ -110,7 +110,6 @@
       </button>&nbsp;&nbsp;-->
       <button ion-button clear icon-only color='primary' (click)="scrollToReply()">
         <ion-icon name="ios-chatboxes-outline"></ion-icon>
-        <span>看评论</span>
       </button>&nbsp;&nbsp;&nbsp;
       <button ion-button clear icon-only color='primary' (click)="makeCollect()">
         <ion-icon *ngIf="topic.data.is_collect" name="ios-star"></ion-icon>

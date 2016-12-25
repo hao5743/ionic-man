@@ -2,7 +2,7 @@
  <ion-navbar>
     <ion-title>
       {{pagination.tab | topictab}}
-      <span *ngIf="pagination.tab==='all'">话题</span>
+      <!--<span *ngIf="pagination.tab==='all'">话题</span>-->
     </ion-title>
     <ion-buttons start>
         <!--<button ion-button clear icon-only color='dark' (click)="openLogin()">
@@ -34,16 +34,16 @@
         <span class="top" *ngIf='p.top'>置顶</span>
         <span class="tab">{{p.tab | topictab}}</span>
         <span>{{p.author.loginname}}</span>
-        <span style="float: right;color:black">{{p.last_reply_at | moment:"auto"}}</span>
+        <span style="float: right;">{{p.last_reply_at | moment:"auto"}}</span>
       </p>
-      <h2 class="p-in-item">
+      <h3 class="p-in-item">
         {{p.title}}
-      </h2>
+      </h3>
       <!--<p class="p-in-item">{{p.content}}</p>-->
-      <!--<p class="visit_count"> 
+      <p class="visit_count"> 
         {{p.visit_count}}阅读&nbsp;{{p.reply_count}}回复&nbsp;
-        {{p.create_at | moment:"auto"}}创建
-      </p>-->
+        <!--{{p.create_at | moment:"auto"}}创建-->
+      </p>
     </ion-item>
     <ion-infinite-scroll *ngIf="topics.hasMore" (ionInfinite)="doInfinite($event)">
       <ion-infinite-scroll-content

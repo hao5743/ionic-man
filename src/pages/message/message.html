@@ -1,18 +1,53 @@
-<!--
-  Generated template for the Message page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>message</ion-title>
+  <ion-navbar hideBackButton="true">
+    <ion-buttons>
+      <button ion-button clear icon-only color='dark' (click)="goBack()">
+         <ion-icon name="md-arrow-back"> </ion-icon>
+        </button>
+    </ion-buttons>
+    <ion-title>消息</ion-title>
   </ion-navbar>
-
 </ion-header>
-
-
-<ion-content padding>
-
+<ion-content padding class="page-message">
+  <div>
+    <ion-segment [(ngModel)]="state">
+      <ion-segment-button value="unread">
+        未读
+      </ion-segment-button>
+      <ion-segment-button value="read">
+        已读
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div [ngSwitch]="state">
+    <ion-list *ngSwitchCase="'unread'">
+      <ion-list-header>
+        未读
+      </ion-list-header>
+      <div *ngFor="let p of messagesUnread" class="message-div">
+        <ion-item>
+          <ion-avatar item-left (click)="goUser(p)">
+            <img src="{{p.author.avatar_url}}" alt="没有图片">
+          </ion-avatar>
+          <p>
+            <span (click)="goUser(p)">{{p.author.loginname}}</span>
+            <a style="float: right;" (click)="sendReply(p)">回复</a>
+          </p>
+        </ion-item>
+        <div class="tip-div">
+          你在
+          <a (click)="goTopic(p.topic)"><<{{p.topic.title}}>></a>
+          中收到了一条新的回复
+        </div>
+       
+        <div class="comments-div">
+          <div [innerHTML]="p.reply.content"></div>
+        </div>
+        <div class="message-date-div">{{p.create_at | moment:"auto"}}</div>
+      </div>
+    </ion-list>
+    <ion-list *ngSwitchCase="'read'">
+    </ion-list>
+  </div>
 </ion-content>

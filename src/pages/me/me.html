@@ -4,6 +4,11 @@
       <span *ngIf="islogin">{{user.data.loginname}}</span>
       <span *ngIf="!islogin">我</span>
     </ion-title>
+     <ion-buttons right>
+      <button ion-button clear icon-only color='dark' (click)="goMessage()">
+          <ion-icon name="ios-mail-outline"></ion-icon>
+        </button>&nbsp;&nbsp;&nbsp;
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -19,7 +24,7 @@
         <button ion-button round color="danger"  (click)="logout()">退出</button>
     </ion-item>
     <ion-item>
-      <p>账号注册于{{user.data.create_at |date:'yyyy/MM/dd HH:mm'}}</p>
+      <p>账号注册于{{user.data.create_at |date:'yyyy/MM/dd HH:mm'}}&nbsp;({{user.data.create_at|moment:"fromnow"}})</p>
       <p>积分：{{user.data.score}}分</p> 
     </ion-item>
     <div padding>
@@ -47,7 +52,7 @@
           </ion-avatar>
           <p style="color:black"><b>{{p.title}}</b></p>
           <p> {{p.author.loginname}}&nbsp;&nbsp;
-            更新于{{p.last_reply_at | moment : "fromnow"}}
+            {{p.last_reply_at | moment : "fromnow"}}更新
           </p>
         </ion-item>
       </ion-list>
@@ -62,7 +67,7 @@
         </ion-avatar>
       <p style="color:black"><b>{{p.title}}</b></p>
         <p> {{p.author.loginname}}&nbsp;
-          {{p.last_reply_at | date:'yyyy/MM/dd HH:mm'}}
+          {{p.last_reply_at | moment:"fromnow"}}更新
         </p>
       </ion-item>
     </ion-list>
@@ -71,15 +76,15 @@
         <ion-list-header>
             收藏的
         </ion-list-header>
-      <ion-item *ngFor="let p of collects" (click)="goTopic(p)">
-        <ion-avatar item-left>
-          <img src="{{p.author.avatar_url}}" alt="没有图片">
-        </ion-avatar>
-      <p style="color:black"><b>{{p.title}}</b></p>
-        <p> {{p.author.loginname}}&nbsp;
-          {{p.last_reply_at | date:'yyyy/MM/dd HH:mm'}}
-        </p>
-      </ion-item>
+        <ion-item *ngFor="let p of collects" (click)="goTopic(p)">
+          <ion-avatar item-left>
+            <img src="{{p.author.avatar_url}}" alt="没有图片">
+          </ion-avatar>
+        <p style="color:black"><b>{{p.title}}</b></p>
+          <p> {{p.author.loginname}}&nbsp;
+            {{p.last_reply_at | moment:"fromnow"}}更新
+          </p>
+        </ion-item>
     </ion-list>
     </div>
   </div>

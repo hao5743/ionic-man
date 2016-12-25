@@ -183,16 +183,18 @@ export class TopicPage{
     this.dataApi.makeUp(item.id).then((res)=>{
       if(!res.type){
         if(res.data && res.data.includes('不能帮自己点赞')){
-          this.handleError('不要太自恋哦，不能自己赞自己',res.data);
+          this.handleError('不允许给自己点赞哦',res.data);
         }else{this.handleError('点赞失败',res.data);}
       }
       else{
         if(res.data && res.data.action==='up'){
            this.tip.presentToast('点赞成功',{position:'top',duration:800});
             item.myup = true;
+            item.ups.push(this.loginUserId);
         }else{
           this.tip.presentToast('取消点赞成功',{position:'top',duration:800});
            item.myup = false;
+           item.ups.splice(item.ups.indexOf(this.loginUserId),1);
         }
        
       }

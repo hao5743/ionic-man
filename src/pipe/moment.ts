@@ -28,6 +28,7 @@ export class Moment implements PipeTransform {
         ans = moment(value).format("YY/M/D H:m:s");
         break;
         default:
+          console.error('moment pipe input illegal.',value);
           ans = value;
       }
       return ans;

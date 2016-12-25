@@ -18,7 +18,7 @@
     <p>github: {{user.data.githubUsername}}</p>
   </ion-item>
   <ion-item>
-    <p>账号注册于{{user.data.create_at |date:'yyyy/MM/dd HH:mm'}}</p>
+    <p>账号注册于{{user.data.create_at |date:'yyyy/MM/dd HH:mm'}}&nbsp;({{user.data.create_at|moment:"fromnow"}})</p>
     <p>积分：{{user.data.score}}分</p> 
   </ion-item>
   <div padding>
@@ -47,7 +47,7 @@
         </ion-avatar>
         <p style="color:black"><b>{{p.title}}</b></p>
         <p> {{p.author.loginname}}&nbsp;&nbsp;
-          更新于{{p.last_reply_at | moment : "fromnow"}}
+          {{p.last_reply_at | moment : "fromnow"}}更新
         </p>
       </ion-item>
     </ion-list>
@@ -62,7 +62,7 @@
       </ion-avatar>
      <p style="color:black"><b>{{p.title}}</b></p>
       <p> {{p.author.loginname}}&nbsp;
-        {{p.last_reply_at | date:'yyyy/MM/dd HH:mm'}}
+        {{p.last_reply_at | moment:"fromnow"}}更新
       </p>
     </ion-item>
   </ion-list>
@@ -77,7 +77,7 @@
       </ion-avatar>
      <p style="color:black"><b>{{p.title}}</b></p>
       <p> {{p.author.loginname}}&nbsp;
-        {{p.last_reply_at | date:'yyyy/MM/dd HH:mm'}}
+        {{p.last_reply_at | moment:"fromnow"}}更新
       </p>
     </ion-item>
   </ion-list>

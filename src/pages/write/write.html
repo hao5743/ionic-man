@@ -7,14 +7,14 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-refresher (ionRefresh)="pullToRefresh($event)" style="border: none">
+  <!--<ion-refresher (ionRefresh)="pullToRefresh($event)" style="border: none">
     <ion-refresher-content
       pullingIcon="ios-arrow-round-down"
       pullingText="下拉刷新"
       refreshingSpinner="ios"
       refreshingText="正在获取">
     </ion-refresher-content>
-  </ion-refresher>
+  </ion-refresher>-->
   
   <div class="padding" *ngIf="!isLogin">
     <p align="center">当前未登录，写文章可以暂时保存到草稿</p>

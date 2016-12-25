@@ -19,7 +19,7 @@ export class HomePage {
     page:0,
     limit:20,
     tab:'all',
-    mdrender:false
+    mdrender:true
   }
   private topics:TopicsInterface={
     fetching:false,

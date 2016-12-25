@@ -1,3 +1,37 @@
-page-message {
+.page-message {
+    .message-div{
+        border-bottom: solid;
+        border-width: 5px;
+        border-color: lightgray;
+        padding:10px 0 10px 0;
+    }
 
+    .tip-div{
+        padding:12px;
+    }
+   
+    .comments-div{
+             margin:0 16px 0 8px;
+             padding:1px 5px 1px 5px;
+             border-radius: 8px;
+             background: #eff9eb;
+             border-color: lightgray;
+             .comment-item{
+                 padding:3px 0 3px 0;
+                border-top: dashed;
+                border-width: 1px;
+                border-color: gray;
+                .imgIcon-in-comment{
+                    width: 16px;
+                    height: 16px;
+                    border-radius: 15px
+                }
+             }
+        }
+
+        .message-date-div{
+            padding:8px 16px 0px 16px;
+            font-size: small;
+            color:gray;
+        }
 }
