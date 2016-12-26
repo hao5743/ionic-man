@@ -7,3 +7,4 @@ export * from './tabs/tabs';
 export * from './write/newTopic';
 export * from './login/login';
 export * from './message/message';
+export * from './setting/setting';

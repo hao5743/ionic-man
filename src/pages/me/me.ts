@@ -3,7 +3,7 @@ import { NavController,NavParams,ModalController,ToastController,AlertController
 import 'rxjs/add/operator/map';
 import { UserInterface } from '../../interfaces/index';
 import { DataApi,Tip } from '../../providers/index';
-import { TopicPage,LoginPage,MessagePage } from '../index';
+import { TopicPage,LoginPage,SettingPage } from '../index';
 
 interface User{
     fetching:boolean,
@@ -94,8 +94,8 @@ export class MePage{
     });
   }
 
-  goMessage(){
-    this.nav.push(MessagePage);
+  goSetting(){
+    this.nav.push(SettingPage);
   }
 
   logout(){

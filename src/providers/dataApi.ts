@@ -25,7 +25,6 @@ export class DataApi {
   }
 
   getTopic(id):any{
-    console.log('/topic/'+id);
     if(!this.config.token){
        return this.api.get('/topic/'+id)
     }else{
@@ -101,6 +100,16 @@ export class DataApi {
     return this.api.get('/messages',{accesstoken,mdrender});
   }
   
+  getMessageUnreadCount():Promise<any>{
+    let accesstoken = this.config.token;
+    return this.api.get('/message/count',{accesstoken}); 
+  }
+
+  messageReadAll():Promise<any>{
+    let accesstoken = this.config.token;
+    return this.api.post('/message/mark_all',{accesstoken}); 
+  }
+
   getUser(loginname:string):any{
     return this.api.get('/user/'+loginname);
   }

@@ -4,28 +4,26 @@
       <span *ngIf="islogin">{{user.data.loginname}}</span>
       <span *ngIf="!islogin">我</span>
     </ion-title>
-     <ion-buttons right>
-      <button ion-button clear icon-only color='dark' (click)="goMessage()">
-          <ion-icon name="ios-mail-outline"></ion-icon>
-        </button>&nbsp;&nbsp;&nbsp;
+    <ion-buttons right *ngIf="islogin">
+      <button ion-button clear icon-only color='dark' (click)="goSetting()">
+          <ion-icon name="ios-settings"></ion-icon>
+        </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-
 <ion-content padding>
-
   <div *ngIf="islogin">
     <ion-item>
-        <ion-avatar item-left>
-          <img src="{{user.data.avatar_url}}">
-        </ion-avatar>
-        <h2>{{user.data.loginname}}</h2>
-        <p>github: {{user.data.githubUsername}}</p>
-        <button ion-button round color="danger"  (click)="logout()">退出</button>
+      <ion-avatar item-left>
+        <img src="{{user.data.avatar_url}}">
+      </ion-avatar>
+      <h2>{{user.data.loginname}}</h2>
+      <p>github: {{user.data.githubUsername}}</p>
+      <button ion-button round color="danger" (click)="logout()">退出</button>
     </ion-item>
     <ion-item>
       <p>账号注册于{{user.data.create_at |date:'yyyy/MM/dd HH:mm'}}&nbsp;({{user.data.create_at|moment:"fromnow"}})</p>
-      <p>积分：{{user.data.score}}分</p> 
+      <p>积分：{{user.data.score}}分</p>
     </ion-item>
     <div padding>
       <ion-segment [(ngModel)]="state">
@@ -40,60 +38,53 @@
         </ion-segment-button>
       </ion-segment>
     </div>
-
     <div [ngSwitch]="state">
-        <ion-list  *ngSwitchCase="'recent'">
+      <ion-list *ngSwitchCase="'recent'">
         <ion-list-header>
-            发表的
+          发表的
         </ion-list-header>
         <ion-item *ngFor="let p of user.data.recent_topics" (click)="goTopic(p)">
           <ion-avatar item-left>
             <img src="{{p.author.avatar_url}}" alt="没有图片">
           </ion-avatar>
           <p style="color:black"><b>{{p.title}}</b></p>
-          <p> {{p.author.loginname}}&nbsp;&nbsp;
-            {{p.last_reply_at | moment : "fromnow"}}更新
+          <p> {{p.author.loginname}}&nbsp;&nbsp; {{p.last_reply_at | moment : "fromnow"}}更新
           </p>
         </ion-item>
       </ion-list>
-
       <ion-list *ngSwitchCase="'reply'">
         <ion-list-header>
-            参与的
+          参与的
         </ion-list-header>
-      <ion-item *ngFor="let p of user.data.recent_replies" (click)="goTopic(p)">
-        <ion-avatar item-left>
-          <img src="{{p.author.avatar_url}}" alt="没有图片">
-        </ion-avatar>
-      <p style="color:black"><b>{{p.title}}</b></p>
-        <p> {{p.author.loginname}}&nbsp;
-          {{p.last_reply_at | moment:"fromnow"}}更新
-        </p>
-      </ion-item>
-    </ion-list>
-
+        <ion-item *ngFor="let p of user.data.recent_replies" (click)="goTopic(p)">
+          <ion-avatar item-left>
+            <img src="{{p.author.avatar_url}}" alt="没有图片">
+          </ion-avatar>
+          <p style="color:black"><b>{{p.title}}</b></p>
+          <p> {{p.author.loginname}}&nbsp; {{p.last_reply_at | moment:"fromnow"}}更新
+          </p>
+        </ion-item>
+      </ion-list>
       <ion-list *ngSwitchCase="'collect'">
         <ion-list-header>
-            收藏的
+          收藏的
         </ion-list-header>
         <ion-item *ngFor="let p of collects" (click)="goTopic(p)">
           <ion-avatar item-left>
             <img src="{{p.author.avatar_url}}" alt="没有图片">
           </ion-avatar>
-        <p style="color:black"><b>{{p.title}}</b></p>
-          <p> {{p.author.loginname}}&nbsp;
-            {{p.last_reply_at | moment:"fromnow"}}更新
+          <p style="color:black"><b>{{p.title}}</b></p>
+          <p> {{p.author.loginname}}&nbsp; {{p.last_reply_at | moment:"fromnow"}}更新
           </p>
         </ion-item>
-    </ion-list>
+      </ion-list>
     </div>
   </div>
   <div *ngIf="!islogin">
     <div align="center">
-        <button ion-button round color="primary" (click)="openLogin()">
+      <button ion-button round color="primary" (click)="openLogin()">
           先登录
         </button>
     </div>
   </div>
-   
 </ion-content>

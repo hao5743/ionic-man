@@ -18,7 +18,9 @@
   </ion-navbar>
 </ion-header>
 <ion-content class='page-topic' padding>
-  <h2>{{topic.data.title}}</h2>
+  <h2>{{topic.data.title}}
+    <ion-spinner class="spinner-small" *ngIf="topic.fetching" name='ios-small'></ion-spinner>
+  </h2>
   <p>
     <span class="good" *ngIf='topic.data.good'>精华</span>
     <span class="top" *ngIf='topic.data.top'>置顶</span>
@@ -33,7 +35,10 @@
   <div [innerHTML]="topic.data.content"></div>
   <div class="reply">
     <ion-item-divider id='replyDivider'>
-      <span style="color:red;font-size: small">回复&nbsp;{{topic.data.replies.length}}</span>
+      <p style="color:red;font-size: small">
+        <span>回复&nbsp;{{topic.data.replies.length}}</span>
+        <ion-spinner style="float: right" class="spinner-small" *ngIf="topic.fetching" name='ios-small'></ion-spinner>
+      </p>
     </ion-item-divider>
     <ion-list>
       <div *ngFor="let p of topic.data.replies; let i =index;" class="reply-div">
@@ -50,8 +55,7 @@
            <ion-icon class="icon-button" name="ios-chatbubbles-outline"></ion-icon>
           </button>
           <button ion-button clear icon-left small item-right (click)="makeUp(p.data)">
-            <ion-icon *ngIf="p.data.myup" class="icon-button" name="ios-thumbs-up" ></ion-icon>
-            <ion-icon *ngIf="!p.data.myup" class="icon-button" name="ios-thumbs-up-outline"></ion-icon>
+            <ion-icon isActive="{{p.data.myup}}" class="icon-button" name="ios-thumbs-up"></ion-icon>
             <span>{{p.data.ups.length}}</span>
           </button>
 
@@ -63,30 +67,33 @@
           <p>
             有{{p.comments.length}}条回复
           </p>
+
           <div *ngFor="let c of p.comments" class="comment-item">
-            <b> 
-              <img class="imgIcon-in-comment" src="{{c.author.avatar_url}}">
-              &nbsp;
-              <a (click)="goUser(c.author.loginname)">
-                {{c.author.loginname}}
-              </a>
-              &nbsp;
-            </b>
-            <span>{{c.create_at|moment:"auto"}}</span>
-              ：
-            
-            <div style="float: right;">
-                <button style="margin: 0" ion-button clear icon-only item-right (click)="makeReply(c)">
-                  <ion-icon class="icon-button" name="ios-chatbubbles-outline"></ion-icon>
-                </button>
-                <button style="margin: 0" ion-button clear icon-left item-right (click)="makeUp(c)">
-                  <ion-icon *ngIf="c.myup" class="icon-button" name="ios-thumbs-up"></ion-icon>
-                  <ion-icon *ngIf="!c.myup" class="icon-button" name="ios-thumbs-up-outline"></ion-icon>
-                 <span> {{c.ups.length}}</span>
-                </button>
-            </div>
-            <span [innerHTML]="c.content"></span>
+               <ion-grid>
+                  <ion-row>
+                    <ion-col width-66>
+                      <div style="">
+                         <img class="imgIcon-in-comment" src="{{c.author.avatar_url}}">
+                         <a (click)="goUser(c.author.loginname)">
+                        {{c.author.loginname}}<br>
+                        <span style="color:gray;font-size: small">{{p.data.create_at | moment:"auto"}}</span>
+                      </a>
+                      </div>
+                    </ion-col>
+                    <ion-col>
+                      <ion-icon class="icon-button" name="ios-chatbubbles-outline"  (click)="makeReply(c)"></ion-icon>
+                      &nbsp;&nbsp;&nbsp;
+                      <ion-icon isActive="{{c.myup}}" class="icon-button" name="ios-thumbs-up" (click)="makeUp(c)"></ion-icon>
+                      <span color="primary"> {{c.ups.length}}</span>
+                    
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <span [innerHTML]="c.content"></span>
+                  </ion-row>
+                </ion-grid>
           </div>
+
         </div>
       </div>
     </ion-list>
@@ -112,8 +119,7 @@
         <ion-icon name="ios-chatboxes-outline"></ion-icon>
       </button>&nbsp;&nbsp;&nbsp;
       <button ion-button clear icon-only color='primary' (click)="makeCollect()">
-        <ion-icon *ngIf="topic.data.is_collect" name="ios-star"></ion-icon>
-        <ion-icon *ngIf="!topic.data.is_collect" name="ios-star-outline"></ion-icon>
+        <ion-icon isActive="{{isCollect(topic.data.is_collect)}}" name="ios-star"></ion-icon>
       </button>&nbsp;&nbsp;&nbsp;
       <!--<button ion-button clear icon-only color='primary' (click)="scrollToTop()">
         <ion-icon name="ios-share-outline"></ion-icon>

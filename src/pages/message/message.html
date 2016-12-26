@@ -1,53 +1,90 @@
-
 <ion-header>
   <ion-navbar hideBackButton="true">
-    <ion-buttons>
-      <button ion-button clear icon-only color='dark' (click)="goBack()">
-         <ion-icon name="md-arrow-back"> </ion-icon>
-        </button>
-    </ion-buttons>
     <ion-title>消息</ion-title>
+    <ion-buttons end  *ngIf="isLogin">
+      <button ion-button icon-right clear small color="dark" (click)="markAllRead()">
+        <div>标记</div>
+        <ion-icon name="ios-mail-open-outline"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-content padding class="page-message">
-  <div>
-    <ion-segment [(ngModel)]="state">
-      <ion-segment-button value="unread">
-        未读
-      </ion-segment-button>
-      <ion-segment-button value="read">
-        已读
-      </ion-segment-button>
-    </ion-segment>
+  <div *ngIf="!isLogin">
+     <div align="center">
+      <button ion-button round color="primary" (click)="openLogin()">
+          先登录
+        </button>
+    </div>
   </div>
-  <div [ngSwitch]="state">
-    <ion-list *ngSwitchCase="'unread'">
-      <ion-list-header>
-        未读
-      </ion-list-header>
-      <div *ngFor="let p of messagesUnread" class="message-div">
-        <ion-item>
-          <ion-avatar item-left (click)="goUser(p)">
-            <img src="{{p.author.avatar_url}}" alt="没有图片">
-          </ion-avatar>
-          <p>
-            <span (click)="goUser(p)">{{p.author.loginname}}</span>
-            <a style="float: right;" (click)="sendReply(p)">回复</a>
-          </p>
-        </ion-item>
-        <div class="tip-div">
-          你在
-          <a (click)="goTopic(p.topic)"><<{{p.topic.title}}>></a>
-          中收到了一条新的回复
+  <div *ngIf="isLogin">
+    <ion-refresher (ionRefresh)="pullToRefresh($event)" style="border: none">
+      <ion-refresher-content pullingIcon="ios-arrow-round-down" pullingText="下拉刷新" refreshingSpinner="ios" refreshingText="正在刷新...">
+      </ion-refresher-content>
+    </ion-refresher>
+    <div>
+      <ion-segment [(ngModel)]="state">
+        <ion-segment-button value="unread">
+          未读
+        </ion-segment-button>
+        <ion-segment-button value="read">
+          已读
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+    <div [ngSwitch]="state">
+      <ion-list *ngSwitchCase="'unread'">
+        <ion-list-header>
+          未读 <span>{{messagesUnread.length}}</span>
+        </ion-list-header>
+        <div *ngFor="let p of messagesUnread" class="message-div">
+          <ion-item>
+            <ion-avatar item-left (click)="goUser(p)">
+              <img src="{{p.author.avatar_url}}" alt="没有图片">
+            </ion-avatar>
+            <p>
+              <span (click)="goUser(p)">{{p.author.loginname}}</span>
+              <a style="float: right;" (click)="sendReply(p)">回复</a>
+            </p>
+          </ion-item>
+          <div class="tip-div">
+            你在
+            <a (click)="goTopic(p.topic)">
+              <<{{p.topic.title}}>></a>
+            中收到了一条新的回复
+          </div>
+          <div class="comments-div">
+            <div [innerHTML]="p.reply.content"></div>
+          </div>
+          <div class="message-date-div">{{p.create_at | moment:"auto"}}</div>
         </div>
-       
-        <div class="comments-div">
-          <div [innerHTML]="p.reply.content"></div>
+      </ion-list>
+      <ion-list *ngSwitchCase="'read'">
+        <ion-list-header>
+          已读<span>{{messagesRead.length}}</span>
+        </ion-list-header>
+        <div *ngFor="let p of messagesRead" class="message-div">
+          <ion-item>
+            <ion-avatar item-left (click)="goUser(p)">
+              <img src="{{p.author.avatar_url}}" alt="没有图片">
+            </ion-avatar>
+            <p>
+              <span (click)="goUser(p)">{{p.author.loginname}}</span>
+              <a style="float: right;" (click)="sendReply(p)">回复</a>
+            </p>
+          </ion-item>
+          <div class="tip-div">
+            你在
+            <a (click)="goTopic(p.topic)">
+              <<{{p.topic.title}}>></a>
+            中收到了一条新的回复
+          </div>
+          <div class="comments-div">
+            <div [innerHTML]="p.reply.content"></div>
+          </div>
+          <div class="message-date-div">{{p.create_at | moment:"auto"}}</div>
         </div>
-        <div class="message-date-div">{{p.create_at | moment:"auto"}}</div>
-      </div>
-    </ion-list>
-    <ion-list *ngSwitchCase="'read'">
-    </ion-list>
+      </ion-list>
+    </div>
   </div>
 </ion-content>

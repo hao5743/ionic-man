@@ -6,7 +6,6 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class Local {
     constructor(public storage:Storage) {
-      console.log('Hello Example Provider');
     }
 
     get(key: string): Promise<any>{

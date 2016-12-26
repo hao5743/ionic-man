@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {NavController,NavParams} from 'ionic-angular';
 import 'rxjs/add/operator/map';
 import { UserInterface } from '../../interfaces/index';
-import { DataApi } from '../../providers/index';
+import { DataApi,Local,Constants } from '../../providers/index';
 import { TopicPage } from '../index';
 
 interface User{
@@ -27,28 +27,47 @@ export class UserPage{
   private tabBarElement:any;
   constructor(private dataApi:DataApi,
               private nav:NavController,
+              private local:Local,
               private navParams:NavParams){
-    this.name = this.navParams.get('name');
-    this.tabBarElement = document.querySelector(".tabbar.show-tabbar");
+     this.init();
   }
 
-  ngOnInit(){
+  init(){
+     this.name = this.navParams.get('name');
+     this.tabBarElement = document.querySelector(".tabbar.show-tabbar");
+     this.user.data={
+       recent_topics:[]
+     } as UserInterface;
+     this.loadCache();
+  }
+
+  ionViewDidEnter(){
     this.getUser();
     this.getUserCollects();
+  }
+
+  loadCache(){
+      let p1 =  this.local.get(Constants.CACHE_USER_IN_USER_PAGE+this.name).then((data)=>{
+          if(data){this.user.data = data;}
+      });
+      let p2 = this.local.get(Constants.CACHE_USER_COLLECTS_IN_USER_PAGE+this.name).then((data)=>{
+        if(data){this.collects = data;}
+      });
+      return Promise.all([p1,p2]);
   }
 
   getUser(){
     return this.dataApi.getUser(this.name).then((res)=>{
         this.user.data = res.data;
-        console.log(res.data);
-    })
+        this.local.set(Constants.CACHE_USER_IN_USER_PAGE+this.name,res.data);
+    }).catch(this.handleError);
   }
 
   getUserCollects(){
     return this.dataApi.getUserCollects(this.name).then((res)=>{
         this.collects = res.data;
-        console.log(this.collects);
-    })
+        this.local.set(Constants.CACHE_USER_COLLECTS_IN_USER_PAGE+this.name,res.data);
+    }).catch(this.handleError);
   }
 
   goBack() {
@@ -61,6 +80,10 @@ export class UserPage{
       id: p.id,
       data: p
     });
+  }
+
+  handleError(error:any){
+    console.error(error);
   }
  
 }
