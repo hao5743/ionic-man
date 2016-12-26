@@ -8,15 +8,15 @@ import { NavController, NavParams } from 'ionic-angular';
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-setting',
-  templateUrl: 'setting.html'
+    selector: 'page-setting',
+    templateUrl: 'setting.html'
 })
 export class SettingPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+    constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SettingPage');
-  }
+    ionViewDidLoad() {
+        console.log('ionViewDidLoad SettingPage');
+    }
 
 }

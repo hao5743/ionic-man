@@ -1,0 +1,26 @@
+{
+    "indent_size": 4,
+
+    "preserve_newlines": true,
+    "max_preserve_newlines": 3,
+    "space_after_anon_function": false,
+    "brace_style": "collapse-preserve-inline",   //"collapse", "expand", "collapse-preserve-inline","end-expand", or "none"
+    "space_before_conditional": true,
+
+    "end_with_newline": true,     //使用空行结尾
+    "wrap_attributes": "auto",    //html标签缩进
+    "wrap_attributes_indent_size": 4,   //html缩进字符数
+
+
+    "eval_code": false,
+    "unescape_strings": false,
+    "wrap_line_length": 0,
+    "break_chained_methods": false,
+    "keep_array_indentation": false,
+    "keep_function_indentation": false,
+    "jslint_happy": false,
+    "indent_with_tabs": false,
+    "indent_level": 0,
+    "eol": "\n",
+    "indent_char": " "
+}
