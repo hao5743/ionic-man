@@ -18,7 +18,7 @@
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-<ion-content padding>
+<ion-content padding scroll="false">
   <ion-item>
     <ion-label>分类</ion-label>
     <ion-select [(ngModel)]="input.tab">
@@ -28,12 +28,12 @@
     </ion-select>
   </ion-item>
   <ion-item>
-    <ion-label floating>标题</ion-label>
-    <ion-input type="text" [(ngModel)]="input.title"></ion-input>
+    <!--<ion-label floating>标题</ion-label>-->
+    <ion-input type="text" [(ngModel)]="input.title" placeholder="标题"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label floating>内容</ion-label>
-    <ion-textarea rows="12" [(ngModel)]="input.content"></ion-textarea>
+    <!--<ion-label floating>内容</ion-label>-->
+    <ion-textarea rows="12" [(ngModel)]="input.content" placeholder="内容"></ion-textarea>
   </ion-item>
  
 </ion-content>

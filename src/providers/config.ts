@@ -1,7 +1,5 @@
 import {Injectable} from '@angular/core';
-import { Local } from "./local";
 import { UserInterface } from "../interfaces/index";
-import { Constants } from "./constants";
 /**
  * 这是一个单例模式的config，用于共享全局变量
  */

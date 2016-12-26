@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController,NavParams,ModalController,ToastController,AlertController } from 'ionic-angular';
+import { NavController,NavParams,ModalController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 import { UserInterface } from '../../interfaces/index';
 import { DataApi,Tip } from '../../providers/index';

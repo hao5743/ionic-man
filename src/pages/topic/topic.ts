@@ -42,7 +42,6 @@ export class TopicPage {
     data:{} as TopicInterface
   };
   private paramTopic:any;
-  private cacheTopic:any;
   private id: string = '';
   private tabBarElement: any;
   private loginUserId: string = '';
@@ -75,6 +74,10 @@ export class TopicPage {
       t.author=p.author; t.title = p.title; t.tab=p.tab; t.good=p.good;t.top=p.top;
       t.reply_count=p.reply_count; t.visit_count=p.visit_count; t.create_at=p.create_at;
     }
+    this.getLoginUser();
+  }
+
+  getLoginUser(){
     //获取登录信息
     let u: any = this.dataApi.getLoginUserWithId();
     if (u) {
@@ -209,6 +212,8 @@ export class TopicPage {
     let modal = this.modalCtrl.create(LoginPage);
     modal.onDidDismiss(data => {
       //  this.getUser();
+      this.getLoginUser();
+      this.getTopic();
     });
     modal.present();
   }
