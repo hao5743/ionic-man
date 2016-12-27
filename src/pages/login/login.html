@@ -19,13 +19,22 @@
   <div *ngIf="!isLogin">
     <ion-item>
         <ion-label floating>输入accesstoken完成验证</ion-label>
-        <ion-textarea rows="10" [(ngModel)]="token"></ion-textarea>
+        <ion-textarea rows="6" [(ngModel)]="token"></ion-textarea>
       </ion-item>
       <div align="center">
           <button ion-button round color="primary" (click)="doLogin()">
             验证token
           </button>
       </div>
+
+      <ion-list>
+          <ion-list-header>输入历史</ion-list-header>
+          <ion-item *ngFor="let p of loginHistories" (click)="setToken(p)">
+             <p style="font-size: 12px;">{{p}}</p>
+          </ion-item>
+      </ion-list>
+
+
   </div>
   <div *ngIf="isLogin">
     已登录：{{loginuser.loginname}}<br>

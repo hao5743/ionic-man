@@ -19,11 +19,11 @@ interface User{
 export class UserPage{
   public user:User = {
     fetching:false,
-    data:{} as UserInterface  
+    data:{} as UserInterface
   };
   public name:string;
   public collects:any;
-  public state:string = "recent";  
+  public state:string = "recent";
   private tabBarElement:any;
   constructor(private dataApi:DataApi,
               private nav:NavController,
@@ -39,11 +39,16 @@ export class UserPage{
        recent_topics:[]
      } as UserInterface;
      this.loadCache();
+
+  }
+
+  ionViewDidLoad(){
+    this.getUser();
+    this.getUserCollects();
   }
 
   ionViewDidEnter(){
-    this.getUser();
-    this.getUserCollects();
+
   }
 
   loadCache(){
@@ -85,5 +90,5 @@ export class UserPage{
   handleError(error:any){
     console.error(error);
   }
- 
+
 }

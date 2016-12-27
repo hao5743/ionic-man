@@ -43,6 +43,7 @@ export class TopicPage {
   };
   private paramTopic:any;
   private id: string = '';
+  private contentLoading:boolean = true;
   private tabBarElement: any;
   private loginUserId: string = '';
   private loginUser: UserInterface;
@@ -63,6 +64,7 @@ export class TopicPage {
 
   init(){
     //constructor阶段，不宜执行大量操作，否则会造成切换页面卡顿，仅对基本变量赋值
+    this.contentLoading = true;
     this.topic.data.author={ loginname: '', avatar_url: '' };
     this.topic.data.is_collect=false;
     this.topic.data.replies=[];
@@ -90,7 +92,7 @@ export class TopicPage {
     return this.local.get(Constants.CACHE_TOPIC_IN_TOPIC_PAGE + this.id).then((data) => {
       //加载content和reply，如果有的话。
       //注意：这一步可能会比较慢，所以我们把它放在didEnter中执行，防止页面切换卡顿
-      if(data && this.paramTopic){ 
+      if(data && this.paramTopic){
         this.topic.data = this.paramTopic;
         this.topic.data.replies = data.replies;
       }
@@ -109,6 +111,9 @@ export class TopicPage {
   }
 
   ionViewDidEnter(){
+      setTimeout(res=> {
+          this.contentLoading = false;
+      }, 600);
      this.loadCache().then((res)=>{
        this.getTopic();
     })
@@ -117,7 +122,7 @@ export class TopicPage {
   ionViewWillLeave(){
      this.showTabBar();
   }
-  
+
   showTabBar(){
     var pre = this.nav.getPrevious().name;
     if (pre == 'HomePage' || pre === 'MePage' || pre === 'MessagePage') {

@@ -2,12 +2,12 @@
     "indent_size": 4,
 
     "preserve_newlines": true,
-    "max_preserve_newlines": 3,
+    "max_preserve_newlines": 1,
     "space_after_anon_function": false,
     "brace_style": "collapse-preserve-inline",   //"collapse", "expand", "collapse-preserve-inline","end-expand", or "none"
     "space_before_conditional": true,
 
-    "end_with_newline": true,     //使用空行结尾
+    "end_with_newline": false,     //使用空行结尾
     "wrap_attributes": "auto",    //html标签缩进
     "wrap_attributes_indent_size": 4,   //html缩进字符数
 

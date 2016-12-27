@@ -1,9 +1,10 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { WritePage,HomePage,TopicPage,UserPage,MePage,TabsPage,NewTopic,LoginPage,MessagePage,SettingPage } from '../pages/index';
+import { WritePage,HomePage,TopicPage,UserPage,MePage,TabsPage,NewTopic,LoginPage,MessagePage,SettingPage,AboutPage } from '../pages/index';
 import { TestPipe,TopicTab,Moment } from '../pipe/index';
 import { Api,DataApi,Config,Local,Tip } from '../providers/index';
+import { TopicItemComponent,TopicContentComponent } from '../components/index';
 
 import { Storage } from '@ionic/storage';
 
@@ -21,6 +22,10 @@ import { Storage } from '@ionic/storage';
     LoginPage,
     MessagePage,
     SettingPage,
+    AboutPage,
+    //components
+    TopicContentComponent,
+    TopicItemComponent,
     //pipes
     TestPipe,
     TopicTab,
@@ -41,7 +46,8 @@ import { Storage } from '@ionic/storage';
     NewTopic,
     LoginPage,
     MessagePage,
-    SettingPage
+    SettingPage,
+    AboutPage
   ],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },

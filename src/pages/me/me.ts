@@ -3,7 +3,7 @@ import { NavController,NavParams,ModalController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 import { UserInterface } from '../../interfaces/index';
 import { DataApi,Tip } from '../../providers/index';
-import { TopicPage,LoginPage,SettingPage } from '../index';
+import { TopicPage,LoginPage,SettingPage,AboutPage } from '../index';
 
 interface User{
     fetching:boolean,
@@ -20,9 +20,9 @@ export class MePage{
   public user:User ;
 
   public collects:any = [];
-  public state:string = "recent";  
+  public state:string = "recent";
   public islogin = false;
-  
+
   constructor(private dataApi:DataApi,
               private nav:NavController,
               private modalCtrl: ModalController,
@@ -31,7 +31,7 @@ export class MePage{
     // this.name = 'hao5743';
       this.user = {
         fetching:false,
-        data:{} as UserInterface  
+        data:{} as UserInterface
       };
   }
 
@@ -71,7 +71,14 @@ export class MePage{
     }else{
       this.islogin=false;
     }
-    
+  }
+
+  goAbout(){
+    console.log('openlogin');
+     let modal = this.modalCtrl.create(AboutPage);
+     modal.onDidDismiss(data => {
+     });
+     modal.present();
   }
 
   getUserCollects(){
@@ -79,7 +86,7 @@ export class MePage{
       if(res && res.data){
         this.collects = res.data;
         // console.log(this.collects);
-      } 
+      }
     })
   }
 
@@ -107,5 +114,5 @@ export class MePage{
       }
     })
   }
- 
+
 }

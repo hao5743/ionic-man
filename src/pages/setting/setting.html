@@ -6,13 +6,24 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>setting</ion-title>
+ <ion-navbar hideBackButton="true">
+    <ion-buttons>
+        <button ion-button clear icon-only color='dark' (click)="goBack()">
+         <ion-icon name="md-arrow-back"> </ion-icon>
+        </button>
+    </ion-buttons>
+    <ion-title>设置</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+<ion-list>
+  <ion-item (click)="clearCache()">
+    <ion-icon name="ios-car" item-left></ion-icon>
+      clear cache
+    <ion-icon name="ios-cloudy-night" item-right></ion-icon>
+  </ion-item>
+</ion-list>
 </ion-content>
