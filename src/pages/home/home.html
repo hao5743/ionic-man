@@ -1,54 +1,23 @@
 <ion-header>
-    <ion-navbar>
+    <ion-navbar color="primary">
         <ion-title>
             {{pagination.tab | topictab}}
-            <!--<span *ngIf="pagination.tab==='all'">话题</span>-->
         </ion-title>
         <ion-buttons start>
-            <!--<button ion-button clear icon-only color='dark' (click)="openLogin()">
-         登录
-        </button>-->
         </ion-buttons>
     </ion-navbar>
-
 </ion-header>
-
 <ion-content class="page-home">
-
     <ion-refresher (ionRefresh)="pullToRefresh($event)" style="border: none">
-        <ion-refresher-content pullingIcon="ios-arrow-round-down" pullingText="下拉刷新" refreshingSpinner="ios" refreshingText="正在刷新...">
+        <ion-refresher-content pullingIcon="ios-refresh" pullingText="" refreshingSpinner="circles" refreshingText="">
         </ion-refresher-content>
     </ion-refresher>
-
     <ion-list>
-
-        <!--<ion-item *ngFor="let p of topics.data" (click)="showInfo(p)">
-            <ion-thumbnail item-right>
-                <img src="{{p.author.avatar_url}}" alt="没有图片">
-            </ion-thumbnail>
-            <p class="p1-in-item">
-                <span class="good" *ngIf='p.good'>精华</span>
-                <span class="top" *ngIf='p.top'>置顶</span>
-                <span class="tab">{{p.tab | topictab}}</span>
-                <span>{{p.author.loginname}}</span>
-                <span style="float: right;">{{p.last_reply_at | moment:"auto"}}</span>
-            </p>
-            <h3 class="p-in-item">
-                {{p.title}}
-            </h3>
-            <p class="visit_count">
-                {{p.visit_count}}阅读&nbsp;{{p.reply_count}}回复&nbsp;
-            </p>
-        </ion-item>-->
-
         <div *ngFor="let p of topics.data" (click)="showInfo(p)">
             <topic-item [topic]="p"></topic-item>
         </div>
-
-
-
         <ion-infinite-scroll *ngIf="topics.hasMore" (ionInfinite)="doInfinite($event)">
-            <ion-infinite-scroll-content loadingSpinner="ios" loadingText="正在加载更多...">
+            <ion-infinite-scroll-content loadingSpinner="circles" loadingText="加载更多...">
             </ion-infinite-scroll-content>
         </ion-infinite-scroll>
     </ion-list>
@@ -58,11 +27,11 @@
         <ion-fab-list side="bottom">
             <button ion-fab color="sky" (click)='setTab("share")'>分享</button>
             <button ion-fab color="primary" (click)='setTab("ask")'>求助</button>
-            <button ion-fab color="secondary" (click)='setTab("job")'>招聘</button>
+            <button ion-fab color="danger" (click)='setTab("job")'>招聘</button>
         </ion-fab-list>
         <ion-fab-list side="top">
             <button ion-fab color="secondary" (click)='setTab("all")'>全部</button>
-            <button ion-fab color="danger" (click)='setTab("good")'>精华</button>
+            <button ion-fab color="danger" (click)='setTab("good")' *ngIf="!isIonic">精华</button>
         </ion-fab-list>
     </ion-fab>
 

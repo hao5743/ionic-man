@@ -1,10 +1,10 @@
 <ion-header class='page-topic'>
-  <ion-navbar hideBackButton="true">
-    <ion-buttons>
-        <button ion-button clear icon-only color='dark' (click)="goBack()">
+  <ion-navbar hideBackButton="true"  color="primary">
+    <ion-buttons left>
+        <button ion-button clear icon-only color='light' (click)="goBack()">
          <ion-icon name="md-arrow-back"> </ion-icon>
         </button>
-        <button ion-button clear icon-left small color='dark' (click)="goUser()">
+        <button ion-button clear icon-left small color='light' (click)="goUser()">
           <img class="imgIcon-in-header" src="{{topic.data.author.avatar_url}}">
           &nbsp;&nbsp;{{topic.data.author.loginname}}
         </button>
@@ -19,7 +19,7 @@
 </ion-header>
 <ion-content class='page-topic' padding>
   <h2>{{topic.data.title}}
-    <ion-spinner class="spinner-small" *ngIf="topic.fetching" name='ios-small'></ion-spinner>
+    <ion-spinner class="spinner-small" *ngIf="topic.fetching" name='circles'></ion-spinner>
   </h2>
   <p>
     <span class="good" *ngIf='topic.data.good'>精华</span>
@@ -41,7 +41,7 @@
     <ion-item-divider id='replyDivider' *ngIf="!contentLoading">
       <p style="color:red;font-size: small">
         <span>回复&nbsp;{{topic.data.replies.length}}</span>
-        <ion-spinner style="float: right" class="spinner-small" *ngIf="topic.fetching" name='ios-small'></ion-spinner>
+        <ion-spinner style="float: right" class="spinner-small" *ngIf="topic.fetching" name='circles'></ion-spinner>
       </p>
     </ion-item-divider>
     <ion-list>

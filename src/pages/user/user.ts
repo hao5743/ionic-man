@@ -72,7 +72,9 @@ export class UserPage{
     return this.dataApi.getUserCollects(this.name).then((res)=>{
         this.collects = res.data;
         this.local.set(Constants.CACHE_USER_COLLECTS_IN_USER_PAGE+this.name,res.data);
-    }).catch(this.handleError);
+    }).catch((error)=>{
+        this.handleError(error,'获取收藏错误或收藏api不存在');
+    });
   }
 
   goBack() {
@@ -87,8 +89,10 @@ export class UserPage{
     });
   }
 
-  handleError(error:any){
-    console.error(error);
-  }
-
+   handleError(error:any, message?:string) {
+        console.error(error);
+        if(message){
+            console.error(message);
+        }
+    }
 }

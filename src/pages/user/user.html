@@ -1,7 +1,7 @@
 <ion-header class='page-topic'>
-  <ion-navbar hideBackButton="true">
+  <ion-navbar hideBackButton="true" color="primary">
     <ion-buttons left>
-        <button ion-button clear icon-only color='dark' (click)="goBack()">
+        <button ion-button clear icon-only color='light' (click)="goBack()">
          <ion-icon name="md-arrow-back"> </ion-icon>
         </button>
     </ion-buttons>
@@ -19,7 +19,7 @@
   </ion-item>
   <ion-item>
     <p>账号注册于{{user.data.create_at |date:'yyyy/MM/dd HH:mm'}}&nbsp;({{user.data.create_at|moment:"fromnow"}})</p>
-    <p>积分：{{user.data.score}}分</p> 
+    <p>积分：{{user.data.score}}分</p>
   </ion-item>
   <div padding>
     <ion-segment [(ngModel)]="state">
@@ -36,7 +36,7 @@
   </div>
 
   <div [ngSwitch]="state">
-    
+
       <ion-list  *ngSwitchCase="'recent'">
        <ion-list-header>
           发表的
@@ -82,7 +82,7 @@
     </ion-item>
   </ion-list>
   </div>
-    
-  
-   
+
+
+
 </ion-content>

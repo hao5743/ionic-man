@@ -174,7 +174,6 @@ export class TopicPage {
       }
     });
     return answer;
-
     //递归获取根回复
     // 没有根的评论会返回undefined，可能是因为父评论被删除，而子评论没有级联删除导致的
     // 我们这里对于这种评论作删除处理，因为它的父评论被删除，他已经是垃圾评论
@@ -186,7 +185,6 @@ export class TopicPage {
         return getKeyReply(t);
       }
     }
-
   }
 
   goBack() {
@@ -206,9 +204,7 @@ export class TopicPage {
 
   //展示评论
   scrollToReply() {
-    console.log('scrollToReply');
     let y = document.getElementById('replyDivider');
-    console.log(y, y.offsetTop, y.offsetHeight);
     this.content.scrollTo(0, y.offsetTop, 500);
   }
 

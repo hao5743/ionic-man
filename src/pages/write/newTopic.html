@@ -1,7 +1,7 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-buttons left>
-      <button ion-button round color='dark' (click)="cancel()">
+      <button ion-button round color='light' (click)="cancel()">
           取消
         </button>
     </ion-buttons>
@@ -9,10 +9,10 @@
       编辑文章
     </ion-title>
     <ion-buttons right>
-      <button ion-button round color='sky' (click)="saveDraft()">
+      <button ion-button round color='light' (click)="saveDraft()">
           存草稿
         </button>
-      <button ion-button small round color='primary' (click)="upload()">
+      <button ion-button small round color='light' (click)="upload()">
           发布
         </button>
     </ion-buttons>
@@ -35,5 +35,5 @@
     <!--<ion-label floating>内容</ion-label>-->
     <ion-textarea rows="12" [(ngModel)]="input.content" placeholder="内容"></ion-textarea>
   </ion-item>
- 
+
 </ion-content>

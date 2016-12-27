@@ -28,6 +28,7 @@ interface TopicsInterface {
 })
 
 export class HomePage {
+    public isIonic:boolean;
     private pagination: any = {
         page: 1,
         limit: 20,
@@ -39,6 +40,7 @@ export class HomePage {
         hasMore: true,
         data: []
     }
+
     constructor(
         public navCtrl: NavController,
         private modalCtrl: ModalController,
@@ -46,6 +48,7 @@ export class HomePage {
         public dataApi: DataApi) {
         //获取缓存数据
         this.loadCache();
+        this.isIonic = this.dataApi.isIonic();
     }
     ngOnInit() {
         this.getTopics();

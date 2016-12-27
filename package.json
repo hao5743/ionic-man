@@ -1,5 +1,5 @@
 {
-  "name": "cnode-ionic2",
+  "name": "ionic-man",
   "author": "hao5743@163.com",
   "homepage": "http://ionicframework.com/",
   "private": true,
@@ -40,5 +40,5 @@
     "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": [],
-  "description": "NodeMan: A cnode club client"
+  "description": "Ionic Man: An awesome ionicina club app"
 }

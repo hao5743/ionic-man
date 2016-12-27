@@ -70,17 +70,25 @@ export class DataApi {
             })
         })
     }
-    collect(topicId) {
+    collect(topicId):Promise<any> {
         let obj: any = {};
         obj.accesstoken = this.config.token;
         obj.topic_id = topicId;
-        return this.api.post('/topic_collect/collect', obj);
+        if(this.config.isIonic){
+            return this.api.post('/topic/collect', obj);              //ionicChina use this
+        }else{
+            return this.api.post('/topic_collect/collect', obj);      //cnode use this
+        }
     }
-    deCollect(topicId) {
+    deCollect(topicId):Promise<any> {
         let obj: any = {};
         obj.accesstoken = this.config.token;
         obj.topic_id = topicId;
-        return this.api.post('/topic_collect/de_collect', obj);
+        if(this.config.isIonic){
+            return this.api.post('/topic/de_collect', obj);              //ionicChina use this
+        }else{
+            return this.api.post('/topic_collect/de_collect', obj);      //cnode use this
+        }
     }
     getMessages(): Promise < any > {
         let accesstoken = this.config.token;
@@ -102,15 +110,12 @@ export class DataApi {
         return this.api.get('/topic_collect/' + loginname);
     }
     getDrafts(): any {
-        // return this.api.readFromLocalJson(this.config.DRAFTS_URL);
         return this.local.get(Constants.DRAFTS);
     }
     setDrafts(body): any {
-        // return this.api.writeToLocalJson(this.config.DRAFTS_URL,body);
         return this.local.set(Constants.DRAFTS, body);
     }
     verifyToken(accesstoken: string): Promise < any > {
-        // return this.api.post('/accesstoken',{accesstoken});
         return new Promise((resolve, reject) => {
             this.http.post(this.config.hostURL + '/accesstoken', { accesstoken })
                 .toPromise()
@@ -156,9 +161,11 @@ export class DataApi {
     clearCache(){
         this.local.forEach((value,key,index)=>{
             if(key.startsWith('CACHE_')){
-                console.log(key,'deleted');
                 this.local.remove(key);
             }
         })
+    }
+    isIonic(){
+        return this.config.isIonic;
     }
 }

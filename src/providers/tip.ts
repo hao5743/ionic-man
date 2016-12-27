@@ -93,7 +93,8 @@ export class Tip {
             inputs: [
               {
                 name: opts.inputName || 'data',
-                placeholder: opts.inputPlaceholder || '请输入'
+                placeholder: opts.inputPlaceholder || '请输入',
+                checked:true
               }
             ],
             buttons: [

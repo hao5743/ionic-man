@@ -1,11 +1,11 @@
 <ion-header>
-    <ion-navbar>
+    <ion-navbar color="primary">
         <ion-title>
             <span *ngIf="islogin">{{user.data.loginname}}</span>
             <span *ngIf="!islogin">我</span>
         </ion-title>
         <ion-buttons right *ngIf="islogin">
-            <button ion-button clear icon-only color='dark' (click)="goSetting()">
+            <button ion-button clear icon-only color='light' (click)="goSetting()">
           <ion-icon name="ios-settings"></ion-icon>
         </button>
         </ion-buttons>
