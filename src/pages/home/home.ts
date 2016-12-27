@@ -1,22 +1,8 @@
-import {
-    Component
-} from '@angular/core';
-import {
-    NavController,
-    ModalController
-} from 'ionic-angular';
-import {
-    TopicInterface
-} from '../../interfaces/index';
-import {
-    DataApi,
-    Local,
-    Constants
-} from '../../providers/index';
-import {
-    TopicPage,
-    LoginPage
-} from '../index';
+import {Component} from '@angular/core';
+import {NavController, ModalController} from 'ionic-angular';
+import {TopicInterface} from '../../interfaces/index';
+import {DataApi, Local, Constants} from '../../providers/index';
+import {TopicPage, LoginPage} from '../index';
 interface TopicsInterface {
     fetching: boolean,
         hasMore: boolean,

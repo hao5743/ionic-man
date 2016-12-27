@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { UserInterface } from "../interfaces/index";
+import {Injectable} from '@angular/core';
+import {UserInterface} from "../interfaces/index";
 /**
  * 这是一个单例模式的config，用于共享全局变量
  */
@@ -18,11 +18,13 @@ export class Config {
     public loginUserWithId: any; //存放携带id的user信息
     static instance: Config;
     static isCreating: Boolean = false;
+
     constructor() {
         if (!Config.isCreating) {
             throw new Error("You can't call new in Config Singleton instance!");
         }
     }
+
     static getInstance() {
         if (Config.instance == null) {
             Config.isCreating = true;

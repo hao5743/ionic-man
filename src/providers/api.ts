@@ -1,15 +1,6 @@
-import {
-  Injectable
-} from '@angular/core';
-import {
-  Http,
-  Response,
-  RequestOptions,
-  Headers
-} from '@angular/http';
-import {
-  Config
-} from './config';
+import {Injectable} from '@angular/core';
+import {Http, Response, RequestOptions, Headers} from '@angular/http';
+import {Config} from './config';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise';
@@ -91,7 +82,7 @@ export class Api {
     return this.http.get(localUrl, this.requestOpts)
         .toPromise()
         .then(res => res.json())
-        .catch(this.handleError);     
+        .catch(this.handleError);
   }
 
   writeToLocalJson(localUrl, json){
