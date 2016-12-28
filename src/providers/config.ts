@@ -5,17 +5,17 @@ import {UserInterface} from "../interfaces/index";
  */
 @Injectable()
 export class Config {
-    public mode = 'dev'; //运行模式 dev or release
-    //   public hostURL = 'https://cnodejs.org/api/v1';    //http请求前缀
-    public hostURL = 'http://ionichina.com/api/v1'; //http请求前缀
+    public mode = 'dev';                         //运行模式 dev or release
+    //   public hostURL = 'https://cnodejs.org/api/v1';     //http请求前缀
+    public hostURL = 'http://ionichina.com/api/v1';         //http请求前缀
     public isIonic = true;
     public isCnode = false;
 
-    public pageLimit = 15; //每页多少
-    public DRAFTS_URL = '/data/drafts.json'; //草稿本地地址
-    public token: string = ''; //如果已经登录，存放token，请和localstorage.get('token')同步
-    public loginUser: UserInterface; //如果已经登录，存放登录用户信息，请和本地存储保持同步
-    public loginUserWithId: any; //存放携带id的user信息
+    public pageLimit = 15;                       //每页多少
+    public DRAFTS_URL = '/data/drafts.json';     //草稿本地地址
+    public token: string = '';                   //如果已经登录，存放token，请和localstorage.get('token')同步
+    public loginUser: UserInterface;             //如果已经登录，存放登录用户信息，请和本地存储保持同步
+    public loginUserWithId: any;                 //存放携带id的user信息
     static instance: Config;
     static isCreating: Boolean = false;
 

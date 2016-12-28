@@ -1,82 +1,71 @@
 .page-topic {
-    .loading{
-        position:absolute;
-        bottom: 60%;
-        display: block;
-        width: 250px;
-        left:50%;
-        margin-left:-125px;
-    }
-
-    .spinner-small{
+    .spinner-small {
         height: 20px;
         width: 20px;
     }
-    .imgIcon-in-header{
+    .imgIcon-in-header {
         width: 20px;
         height: 20px;
         border-radius: 15px
     }
-    .input-in-footer{
-       padding:0 2px 0 2px;
-       height:30px;
-       line-height:30px;
-       border: none;
-       font-size: small;
-       width: 98%;
+    .input-in-footer {
+        padding: 0 2px 0 2px;
+        height: 30px;
+        line-height: 30px;
+        border: none;
+        font-size: small;
+        width: 98%;
     }
-    .input-div{
+    .input-div {
         border: solid;
         border-color: darkgray;
         border-width: 1px;
         border-radius: 3px;
         width: 100%;
     }
-    .icon-size{
+    .icon-size {
         font-size: small;
     }
-    .text-num{
-        color:gray
+    .text-num {
+        color: gray
     }
-    .reply{
-         .icon-button{
-                font-size: 24px;
-                color:#387ef5;
-            }
-        .reply-item{
-
-            .item-inner{
-                border:none;
-                margin-bottom: -22px;
-            }
+    .reply {
+        .icon-button {
+            font-size: 24px;
+            color: #387ef5;
         }
-        .reply-content{
-             padding:0 16px 0 16px;
+        .reply-item .item-inner{
+                border: none;
+                border-bottom: solid;
+                border-color: lightgray;
+                border-width: 1px;
         }
-        .reply-div{
+        .reply-content {
+            padding: 0 16px 0 16px;
+        }
+        .reply-div {
             border-bottom: solid;
             border-width: 5px;
             border-color: lightgray;
-            padding:10px 0 10px 0;
+            padding: 10px 0 10px 0;
         }
-         .comments-div{
-             margin:0 16px 0 12px;
-             padding:3px 5px 3px 5px;
-             border-radius: 8px;
-             background: #eff9eb;
-             border-color: lightgray;
-             .comment-item{
-                 padding:3px 0 3px 0;
+        .comments-div {
+            margin: 0 16px 0 12px;
+            padding: 3px 5px 3px 5px;
+            border-radius: 8px;
+            background: #eff9eb;
+            border-color: lightgray;
+            .comment-item {
+                padding: 3px 0 3px 0;
                 border-top: dashed;
                 border-width: 1px;
                 border-color: gray;
-                .imgIcon-in-comment{
+                .imgIcon-in-comment {
                     width: 12px;
                     height: 12px;
                     border-radius: 12px
                 }
-             }
+            }
         }
-
     }
 }

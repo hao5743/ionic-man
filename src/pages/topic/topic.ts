@@ -41,6 +41,7 @@ export class TopicPage {
     fetching:false,
     data:{} as TopicInterface
   };
+  private isIonic: boolean;
   private paramTopic:any;
   private id: string = '';
   private contentLoading:boolean = true;
@@ -56,6 +57,7 @@ export class TopicPage {
     private local: Local,
     private navParams: NavParams) {
     this.tabBarElement = document.querySelector(".tabbar.show-tabbar");
+    this.isIonic = this.dataApi.isIonic();
     this.init();
   }
 
@@ -205,7 +207,9 @@ export class TopicPage {
   //展示评论
   scrollToReply() {
     let y = document.getElementById('replyDivider');
-    this.content.scrollTo(0, y.offsetTop, 500);
+    if(y){
+        this.content.scrollTo(0, y.offsetTop, 500);
+    }
   }
 
   openLogin() {
@@ -326,6 +330,12 @@ export class TopicPage {
   makeCollect() {
     if (!this.checkLogin()) {
       return
+    }
+    if(this.isIonic){
+        this.tip.presentToast('收藏api未提供，快去给管理员提建议', {
+            duration: 800
+        });
+        return;
     }
     if (this.topic.data.is_collect) {
       this.deCollect();

@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
-import {NavController, ModalController} from 'ionic-angular';
-import {TopicInterface} from '../../interfaces/index';
-import {DataApi, Local, Constants} from '../../providers/index';
-import {TopicPage, LoginPage} from '../index';
+import { Component } from '@angular/core';
+import { NavController, ModalController } from 'ionic-angular';
+import { TopicInterface } from '../../interfaces/index';
+import { DataApi, Local, Constants } from '../../providers/index';
+import { TopicPage, LoginPage } from '../index';
 interface TopicsInterface {
     fetching: boolean,
         hasMore: boolean,
@@ -12,9 +12,9 @@ interface TopicsInterface {
     selector: 'page-home',
     templateUrl: 'home.html'
 })
-
 export class HomePage {
-    public isIonic:boolean;
+    public isIonic: boolean;
+    private contentLoading: boolean = false;
     private pagination: any = {
         page: 1,
         limit: 20,
@@ -26,7 +26,6 @@ export class HomePage {
         hasMore: true,
         data: []
     }
-
     constructor(
         public navCtrl: NavController,
         private modalCtrl: ModalController,
@@ -49,9 +48,18 @@ export class HomePage {
     }
     getTopics() {
         let pg = this.pagination;
+        if (pg.page === 1) {
+            this.contentLoading = true;
+            setTimeout((res) => {
+                this.contentLoading = false;
+            }, 4000);
+        }
         return this.dataApi.getTopics(pg.page, pg.limit, pg.tab, pg.mdrender).then((res) => {
-            if (pg.page == 1) {
+            if (pg.page === 1) {
                 this.topics.data = [];
+                setTimeout((res) => {
+                    this.contentLoading = false;
+                }, 400);
             }
             this.topics.data = this.topics.data.concat(res.data);
             if (res.data.length === 0) {
@@ -66,8 +74,7 @@ export class HomePage {
         })
     }
     refreshTopics() {
-        this.topics.data = [];
-        this.pagination.page = 0;
+        this.pagination.page = 1;
         return this.getTopics();
     }
     pullToRefresh(refresher) {
