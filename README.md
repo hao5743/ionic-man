@@ -3,6 +3,7 @@
 作者：hao5743@163.com
 
 业余时间使用ionic2+angular2+typescript开发的一个ionichina社区客户端，支持android和ios，欢迎同志们提出改进建议，任何建议、bug、疑问可发送到邮箱。
+对你有帮助的话，请给个star鼓励吧
 
 ## 基本功能
 * 话题列表、详情
@@ -27,6 +28,7 @@
 * 二维码扫描登录
 * 修复android启动缓慢问题
 * 消息通知推送
+* 上线AppStore、豌豆荚
 
 ## 说明
 * 在开发中遇到了诸多的小问题，比如scroll跳转，tabbar隐藏，date显示格式化显示，本地缓存策略，http错误的捕获和处理，项目结构，页面模块化，page的加载流程（constructor,willload,ngOninit,didload,willenter,didenter等），
