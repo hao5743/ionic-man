@@ -30,6 +30,21 @@ $ cordova platform add ios/android
 $ ionic run ios/android
 ```
 
+## 开发环境
+
+这是我的开发环境，测试可以正常运行。（环境不同有可能会遇到不同的问题）
+
+```
+Cordova CLI: 6.4.0 
+Ionic CLI Version: 2.1.18
+Ionic App Lib Version: 2.1.9
+ios-deploy version: 1.9.0 
+ios-sim version: 5.0.11 
+OS: macOS Sierra
+Node Version: v7.2.0
+Xcode version: Xcode 8.2.1 Build version 8C1002
+```
+
 ## 已发现的问题
 
 * android客户端第一次启动缓慢且有白屏。谷歌找了一下解决方法，目前还没有解决。这个是官方的一个issue[https://github.com/driftyco/ionic/issues/6776](https://github.com/driftyco/ionic/issues/6776)
