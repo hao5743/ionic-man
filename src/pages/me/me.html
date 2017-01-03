@@ -4,7 +4,7 @@
             <span *ngIf="islogin">{{user.data.loginname}}</span>
             <span *ngIf="!islogin">我</span>
         </ion-title>
-        <ion-buttons right *ngIf="islogin">
+        <ion-buttons right>
             <button ion-button clear icon-only color='light' (click)="goSetting()">
           <ion-icon name="ios-settings"></ion-icon>
         </button>

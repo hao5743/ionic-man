@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Storage} from '@ionic/storage';
+
 /*
- 在这里对Storage进行二次封装，增加可维护性, 或方便添加我们自己的钩子代码
+ * 对Storage进行二次封装，增加可维护性, 或方便添加我们自己的钩子代码
  */
 @Injectable()
 export class Local {

@@ -67,7 +67,7 @@
         <div class="reply-content">
           <div [innerHTML]="p.data.content"></div>
         </div>
-        <div class="comments-div">
+        <div class="comments-div" *ngIf="p.comments && p.comments.length>0">
           <p>
             有{{p.comments.length}}条回复
           </p>

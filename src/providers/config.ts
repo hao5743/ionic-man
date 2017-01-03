@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {UserInterface} from "../interfaces/index";
+
 /**
  * 这是一个单例模式的config，用于共享全局变量
  */
@@ -8,8 +9,8 @@ export class Config {
     public mode = 'dev';                         //运行模式 dev or release
     //   public hostURL = 'https://cnodejs.org/api/v1';     //http请求前缀
     public hostURL = 'http://ionichina.com/api/v1';         //http请求前缀
+    // public hostURL = 'http://localhost:8100/api';         //http请求前缀
     public isIonic = true;
-    public isCnode = false;
 
     public pageLimit = 15;                       //每页多少
     public DRAFTS_URL = '/data/drafts.json';     //草稿本地地址

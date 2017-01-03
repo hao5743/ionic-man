@@ -19,7 +19,7 @@
   </div>
   <div *ngIf="isLogin">
     <ion-refresher (ionRefresh)="pullToRefresh($event)" style="border: none">
-      <ion-refresher-content pullingIcon="ios-arrow-round-down" pullingText="下拉刷新" refreshingSpinner="ios" refreshingText="正在刷新...">
+      <ion-refresher-content pullingIcon="ios-refresh" pullingText="" refreshingSpinner="circles" refreshingText="">
       </ion-refresher-content>
     </ion-refresher>
     <div>

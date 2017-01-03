@@ -1,7 +1,10 @@
 import {Injectable} from '@angular/core';
 import { ToastController,AlertController,LoadingController } from 'ionic-angular';
 
-
+/**
+ * 经常用到的一些提示插件，比如confirm,toast等
+ * 封装在这里，方便程序调用或修改风格
+ */
 interface confirmOpts{
   okText?:string,
   cancelText?:string

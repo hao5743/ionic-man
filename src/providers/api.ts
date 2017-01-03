@@ -5,6 +5,9 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise';
 
+/**
+ * 对http的二次封装，在程序中用来获取远程数据
+ */
 @Injectable()
 export class Api {
   private hostUrl;
