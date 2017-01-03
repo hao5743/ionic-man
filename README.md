@@ -3,7 +3,7 @@
 作者：hao5743@163.com
 
 业余时间使用ionic2+angular2+typescript开发的一个ionichina社区客户端，支持android和ios，欢迎同志们提出改进建议，任何建议、bug、疑问可发送到邮箱。
-对你有帮助的话，请给个star鼓励吧
+对你有帮助的话，请给个star鼓励吧。开源地址[https://github.com/hao5743/ionic-man](https://github.com/hao5743/ionic-man)
 
 ## 基本功能
 * 话题列表、详情
@@ -49,3 +49,25 @@ angular2自定义pipe、component，ionic2中splash、icon的制作问题，有�
 ## 联系
 * hao5743@163.com
 * qq 310741531
+
+### 截图
+
+ 话题列表
+
+ ![topiclist.jpeg](http://r.ionichina.com/FvFmGVovEkeHneHnJDnfBH4T644k)
+
+ 话题详情
+
+ ![topic.jpeg](http://r.ionichina.com/FjqutCvpECKDry69XNby48krFjxc) 
+
+ 回复
+
+ ![reply.jpeg](http://r.ionichina.com/FqovFQLA0mgZbojSThihbBpfVzVA)
+
+ 个人信息
+
+ ![me.jpeg](http://r.ionichina.com/FpP7WOB7c0iqyHm16Piog6MEKpwc)
+
+ 话题
+ 
+ ![topic2.png](http://r.ionichina.com/FisbmPOTahqdAI1jDhyKIpR7Zsw_)
