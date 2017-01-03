@@ -19,6 +19,17 @@
 * 草稿。未登录、离线时可以保存草稿到本地，以后再发布。
 * 登录历史。保存登录历史，方便再次登录，避免重复输入token
 
+## 安装步骤
+
+```bash
+$ git clone https://github.com/hao5743/ionic-man.git
+$ npm install
+$ ionic serve
+# 或者
+$ cordova platform add ios/android
+$ ionic run ios/android
+```
+
 ## 已发现的问题
 
 * android客户端第一次启动缓慢且有白屏。谷歌找了一下解决方法，目前还没有解决。这个是官方的一个issue[https://github.com/driftyco/ionic/issues/6776](https://github.com/driftyco/ionic/issues/6776)
