@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 import { TabsPage } from '../pages/tabs/tabs';
-import { Config, Local, Constants } from '../providers/index'
+import { Config, Local, Constants,Tip } from '../providers/index'
 @Component({
     templateUrl: 'app.html'
 })
 export class MyApp {
     rootPage = TabsPage;
     constructor(platform: Platform,
+        private tip: Tip,
         private local: Local) {
         platform.ready().then(() => {
             console.log('device ready');
@@ -17,8 +18,8 @@ export class MyApp {
     }
 
     initApp(){
-        console.log('init app');
         StatusBar.styleDefault();
+        // this.tip.presentToastStart('欢迎来到ionichina社区',{duration:5000});
         this.checkIsLogin();
         this.hideSplashScreen();
     }
@@ -26,8 +27,7 @@ export class MyApp {
     hideSplashScreen() {
         setTimeout(()=> {
             Splashscreen.hide();
-            console.log('hided Splashscreen');
-        }, 300);
+        }, 200);
     }
 
     checkIsLogin(){

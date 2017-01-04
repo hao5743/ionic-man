@@ -48,6 +48,21 @@ export class Tip {
      })
   }
 
+  presentToastStart(message:string,opts:toastOpts={}){
+    return new Promise((resolve,reject)=>{
+        let toast = this.toastCtrl.create({
+          message: message ,
+          duration:  opts.duration || 2000,
+          position: 'middle',
+          cssClass: 'toastStyleStart'
+        })
+        toast.onDidDismiss(() => {
+          resolve();
+        });
+        toast.present();
+     })
+  }
+
   presentLoading(message,opts:loadingOpts={}):any{
     let loader = this.loadingCtrl.create({
       content: message || "",

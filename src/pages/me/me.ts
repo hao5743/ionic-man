@@ -23,7 +23,6 @@ export class MePage {
         private modalCtrl: ModalController,
         private tip: Tip,
         private navParams: NavParams) {
-        // this.name = 'hao5743';
         this.user = {
             fetching: false,
             data: {} as UserInterface
@@ -40,6 +39,7 @@ export class MePage {
         });
         modal.present();
     }
+
     getUser() {
         let data = this.dataApi.getLoginUser();
         this.user.data = {} as UserInterface;
