@@ -11,12 +11,13 @@ export class MyApp {
     constructor(platform: Platform,
         private local: Local) {
         platform.ready().then(() => {
-            this.initApp();
             console.log('device ready');
+            this.initApp();
         });
     }
 
     initApp(){
+        console.log('init app');
         StatusBar.styleDefault();
         this.checkIsLogin();
         this.hideSplashScreen();
@@ -25,7 +26,8 @@ export class MyApp {
     hideSplashScreen() {
         setTimeout(()=> {
             Splashscreen.hide();
-        }, 100);
+            console.log('hided Splashscreen');
+        }, 300);
     }
 
     checkIsLogin(){
