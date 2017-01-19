@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavParams,NavController,ModalController } from 'ionic-angular';
-import  * as inter from '../../interfaces/index';
-import { DataApi, Local, Tip } from '../../providers/index';
-import { LoginPage } from '../../pages/index';
+import  * as inter from '../../interface/index';
+import { DataApi, Local, Tip } from '../../provider/index';
+import { LoginPage } from '../../page/index';
 
 @Component({
   selector: 'modal-newTopic',
@@ -84,7 +84,7 @@ export class NewTopic {
         })
         return ;
     }
-    
+
     var obj = {
       title: this.input.title,
       tab: this.input.tab,

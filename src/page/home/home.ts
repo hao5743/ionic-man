@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
-import { TopicInterface } from '../../interfaces/index';
-import { DataApi, Local, Constants } from '../../providers/index';
+import { TopicInterface } from '../../interface/index';
+import { DataApi, Local, Constants } from '../../provider/index';
 import { TopicPage, LoginPage } from '../index';
 interface TopicsInterface {
     fetching: boolean,

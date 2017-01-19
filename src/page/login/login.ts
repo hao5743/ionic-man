@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
-import { DataApi, Tip, Local, Constants } from '../../providers/index';
+import { DataApi, Tip, Local, Constants } from '../../provider/index';
 
 @Component({
     selector: 'page-login',

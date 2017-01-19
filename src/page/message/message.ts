@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ActionSheetController, ModalController } from 'ionic-angular';
-import { DataApi } from '../../providers/index';
-import { MessageInterface } from '../../interfaces/message.interface';
+import { DataApi } from '../../provider/index';
+import { MessageInterface } from '../../interface/message.interface';
 import { TopicPage } from '../topic/topic';
 import { LoginPage } from '../login/login';
 import { UserPage } from '../user/user';

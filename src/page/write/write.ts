@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController,ModalController } from 'ionic-angular';
 import { NewTopic } from'./newTopic';
-import  * as inter from '../../interfaces/index';
-import { DataApi,Config } from '../../providers/index';
+import  * as inter from '../../interface/index';
+import { DataApi,Config } from '../../provider/index';
 
 @Component({
   selector: 'page-write',
@@ -18,7 +18,7 @@ export class WritePage {
 
   private config:Config;
   public isLogin:boolean = false;
-  
+
   //草稿列表
   public drafts : inter.TopicInputInterface[]= [];
 
@@ -54,7 +54,7 @@ export class WritePage {
       }
     })
   }
-  
+
   saveDraft(){
     this.dataApi.setDrafts({data:this.drafts});
  }

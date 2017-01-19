@@ -1,4 +1,4 @@
-#Ionic Man - ionichina社区客户端
+#IonicMan - ionichina社区客户端
 -----
 作者：hao5743@163.com
 

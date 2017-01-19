@@ -4,7 +4,7 @@ import { Api } from "./api";
 import { Config } from "./config";
 import { Local } from "./local";
 import { Constants } from "./constants";
-import { UserInterface, NewReplyInterface } from "../interfaces/index";
+import { UserInterface, NewReplyInterface } from "../interface/index";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise';

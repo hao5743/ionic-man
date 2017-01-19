@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {NavController,NavParams} from 'ionic-angular';
 import 'rxjs/add/operator/map';
-import { UserInterface } from '../../interfaces/index';
-import { DataApi,Local,Constants } from '../../providers/index';
+import { UserInterface } from '../../interface/index';
+import { DataApi,Local,Constants } from '../../provider/index';
 import { TopicPage } from '../index';
 
 interface User{

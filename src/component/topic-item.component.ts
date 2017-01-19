@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { TopicInterface } from '../interfaces/index';
+import { TopicInterface } from '../interface/index';
 
 @Component({
     selector: 'topic-item',

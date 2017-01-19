@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { DataApi,Tip } from '../../providers/index';
+import { DataApi,Tip } from '../../provider/index';
 /*
   Generated class for the Setting page.
 

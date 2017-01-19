@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
-import { UserInterface } from '../../interfaces/index';
-import { DataApi, Tip } from '../../providers/index';
+import { UserInterface } from '../../interface/index';
+import { DataApi, Tip } from '../../provider/index';
 import { TopicPage, LoginPage, SettingPage, AboutPage } from '../index';
 interface User {
     fetching: boolean,

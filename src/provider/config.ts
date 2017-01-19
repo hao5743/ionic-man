@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {UserInterface} from "../interfaces/index";
+import {UserInterface} from "../interface/index";
 
 /**
  * 这是一个单例模式的config，用于共享全局变量
