@@ -3,9 +3,11 @@ import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 import { TabsPage } from '../page/tabs/tabs';
 import { Config, Local, Constants } from '../provider/index'
+
 @Component({
-    templateUrl: 'app.html'
+    template: `<ion-nav [root]="rootPage"></ion-nav> `
 })
+
 export class MyApp {
     rootPage = TabsPage;
     constructor(platform: Platform,
@@ -16,19 +18,19 @@ export class MyApp {
         });
     }
 
-    initApp(){
+    initApp() {
         StatusBar.styleDefault();
         this.checkIsLogin();
         this.hideSplashScreen();
     }
 
     hideSplashScreen() {
-        setTimeout(()=> {
+        setTimeout(() => {
             Splashscreen.hide();
         }, 200);
     }
 
-    checkIsLogin(){
+    checkIsLogin() {
         let config = Config.getInstance();
         //初始化全局信息
         //检测是否已经登录
@@ -52,4 +54,3 @@ export class MyApp {
         });
     }
 }
-
