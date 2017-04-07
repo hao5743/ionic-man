@@ -7,17 +7,17 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class Constants {
 
-    static DRAFTS = "DRAFTS";
-    static ACCESSTOKEN = "ACCESSTOKEN";
-    static LOGINUSER = "LOGINUSER";
-    static LOGINUSERWITHID = 'LOGINUSERWITHID';
+    static readonly DRAFTS = "DRAFTS";
+    static readonly ACCESSTOKEN = "ACCESSTOKEN";
+    static readonly LOGINUSER = "LOGINUSER";
+    static readonly LOGINUSERWITHID = 'LOGINUSERWITHID';
 
-    static CACHE_TOPICS_IN_HOME_PAGE = 'TOPICS_CACHE_IN_HOME_PAGE'; //
-    static CACHE_TOPIC_IN_TOPIC_PAGE = 'CACHE_TOPIC_IN_TOPIC_PAGE'; //实际使用CACHE_TOPIC_IN_TOPIC_PAGE+topicId 作为key
-    static CACHE_USER_IN_USER_PAGE = 'CACHE_USER_IN_USER_PAGE'; //实际使用CACHE_USER_IN_USER_PAGE+loginname 作为key
-    static CACHE_USER_COLLECTS_IN_USER_PAGE = 'CACHE_USER_COLLECTS_IN_USER_PAGE' //CACHE_USER_COLLECTS_IN_USER_PAGE+loginname 作为key
+    static readonly CACHE_TOPICS_IN_HOME_PAGE = 'TOPICS_CACHE_IN_HOME_PAGE'; //
+    static readonly CACHE_TOPIC_IN_TOPIC_PAGE = 'CACHE_TOPIC_IN_TOPIC_PAGE'; //实际使用CACHE_TOPIC_IN_TOPIC_PAGE+topicId 作为key
+    static readonly CACHE_USER_IN_USER_PAGE = 'CACHE_USER_IN_USER_PAGE'; //实际使用CACHE_USER_IN_USER_PAGE+loginname 作为key
+    static readonly CACHE_USER_COLLECTS_IN_USER_PAGE = 'CACHE_USER_COLLECTS_IN_USER_PAGE' //CACHE_USER_COLLECTS_IN_USER_PAGE+loginname 作为key
 
-    static CACHE_LOGIN_HISTORIES = 'CACHE_LOGIN_HISTORIES';
+    static readonly CACHE_LOGIN_HISTORIES = 'CACHE_LOGIN_HISTORIES';
 
     constructor() {
     }

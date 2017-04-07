@@ -12,14 +12,11 @@ import 'rxjs/add/operator/toPromise';
 export class Api {
   private hostUrl;
   private requestOpts;
-  private config:Config;
   constructor(private http: Http) {
     this.init();
   }
   private init() {
-    //获取config单例一个实例
-    this.config = Config.getInstance();
-    this.hostUrl = this.config.hostURL;
+    this.hostUrl = Config.hostURL;
     let headers = new Headers();
     // headers.append('Accept', '*/*');
     // headers.append('Cache-Control', 'no-cache');

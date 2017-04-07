@@ -31,25 +31,24 @@ export class MyApp {
     }
 
     checkIsLogin() {
-        let config = Config.getInstance();
         //初始化全局信息
         //检测是否已经登录
         this.local.get(Constants.ACCESSTOKEN).then((res) => {
             if (res && res.data) {
                 console.log('已登录');
-                config.token = res.data;
+                Config.token = res.data;
             } else {
                 console.log('未登录');
             }
         });
         this.local.get(Constants.LOGINUSER).then((res) => {
             if (res && res.data) {
-                config.loginUser = res.data;
+                Config.loginUser = res.data;
             }
         });
         this.local.get(Constants.LOGINUSERWITHID).then((res) => {
             if (res && res.data) {
-                config.loginUserWithId = res.data;
+                Config.loginUserWithId = res.data;
             }
         });
     }

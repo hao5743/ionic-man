@@ -17,29 +17,26 @@ import 'rxjs/add/operator/toPromise';
  */
 @Injectable()
 export class DataApi {
-    private config: Config;
     constructor(private http: Http,
         private api: Api,
         private local: Local) {
-        //获取单例config
-        this.config = Config.getInstance();
     }
-    getTopics(page = 0, limit = this.config.pageLimit, tab = 'all', mdrender = true): any {
+    getTopics(page = 0, limit = Config.pageLimit, tab = 'all', mdrender = true): any {
         return this.api.get('/topics', { page, limit, tab, mdrender })
     }
     getTopic(id): any {
-        if (!this.config.token) {
+        if (!Config.token) {
             return this.api.get('/topic/' + id)
         } else {
-            return this.api.get('/topic/' + id, { accesstoken: this.config.token })
+            return this.api.get('/topic/' + id, { accesstoken: Config.token })
         }
     }
     newTopic(obj): Promise < any > {
         return new Promise((resolve, reject) => {
-            if (!this.config.token) {
+            if (!Config.token) {
                 resolve({ type: false, data: { message: '未登录' } });
             } else {
-                obj.accesstoken = this.config.token;
+                obj.accesstoken = Config.token;
                 console.log(obj);
                 this.api.post('/topics', obj).then((res) => {
                     resolve({ type: true, data: res });
@@ -54,10 +51,10 @@ export class DataApi {
     }
     newReply(topicId: string, obj: NewReplyInterface): Promise < any > {
         return new Promise((resolve, reject) => {
-            if (!this.config.token) {
+            if (!Config.token) {
                 resolve({ type: false, data: { message: '未登录' } });
             } else {
-                obj.accesstoken = this.config.token;
+                obj.accesstoken = Config.token;
                 this.api.post('/topic/' + topicId + '/replies', obj).then((res) => {
                     resolve({ type: true, data: res });
                 }).catch((err) => {
@@ -69,7 +66,7 @@ export class DataApi {
     makeUp(replyId: string): Promise < any > {
         return new Promise((resolve, reject) => {
             let obj: any = {};
-            obj.accesstoken = this.config.token;
+            obj.accesstoken = Config.token;
             this.api.post('/reply/' + replyId + '/ups', obj).then((res) => {
                 resolve({ type: true, data: res });
             }).catch((err) => {
@@ -79,9 +76,9 @@ export class DataApi {
     }
     collect(topicId):Promise<any> {
         let obj: any = {};
-        obj.accesstoken = this.config.token;
+        obj.accesstoken = Config.token;
         obj.topic_id = topicId;
-        if(this.config.isIonic){
+        if(Config.isIonic){
             return this.api.post('/topic/collect', obj);              //ionicChina use this
         }else{
             return this.api.post('/topic_collect/collect', obj);      //cnode use this
@@ -89,25 +86,25 @@ export class DataApi {
     }
     deCollect(topicId):Promise<any> {
         let obj: any = {};
-        obj.accesstoken = this.config.token;
+        obj.accesstoken = Config.token;
         obj.topic_id = topicId;
-        if(this.config.isIonic){
+        if(Config.isIonic){
             return this.api.post('/topic/de_collect', obj);              //ionicChina use this
         }else{
             return this.api.post('/topic_collect/de_collect', obj);      //cnode use this
         }
     }
     getMessages(): Promise < any > {
-        let accesstoken = this.config.token;
+        let accesstoken = Config.token;
         let mdrender = true;
         return this.api.get('/messages', { accesstoken, mdrender });
     }
     getMessageUnreadCount(): Promise < any > {
-        let accesstoken = this.config.token;
+        let accesstoken = Config.token;
         return this.api.get('/message/count', { accesstoken });
     }
     messageReadAll(): Promise < any > {
-        let accesstoken = this.config.token;
+        let accesstoken = Config.token;
         return this.api.post('/message/mark_all', { accesstoken });
     }
     getUser(loginname: string): any {
@@ -124,7 +121,7 @@ export class DataApi {
     }
     verifyToken(accesstoken: string): Promise < any > {
         return new Promise((resolve, reject) => {
-            this.http.post(this.config.hostURL + '/accesstoken', { accesstoken })
+            this.http.post(Config.hostURL + '/accesstoken', { accesstoken })
                 .toPromise()
                 .then(res => res.json())
                 .then((res) => {
@@ -137,32 +134,32 @@ export class DataApi {
     }
     setToken(token: string) {
         this.local.set(Constants.ACCESSTOKEN, { data: token });
-        this.config.token = token;
+        Config.token = token;
     }
     getToken() {
-        return this.config.token;
+        return Config.token;
     }
     setLoginUserWithId(user: any) {
         this.local.set(Constants.LOGINUSERWITHID, { data: user });
-        this.config.loginUserWithId = user;
+        Config.loginUserWithId = user;
     }
     getLoginUserWithId() {
-        return this.config.loginUserWithId;
+        return Config.loginUserWithId;
     }
     setLoginUser(user) {
         this.local.set(Constants.LOGINUSER, { data: user });
-        this.config.loginUser = user;
+        Config.loginUser = user;
     }
     getLoginUser(): UserInterface {
-        return this.config.loginUser;
+        return Config.loginUser;
     }
     logout() {
         this.local.remove(Constants.ACCESSTOKEN);
         this.local.remove(Constants.LOGINUSER);
         this.local.remove(Constants.LOGINUSERWITHID);
-        this.config.token = '';
-        this.config.loginUser = null;
-        this.config.loginUserWithId = null;
+        Config.token = '';
+        Config.loginUser = null;
+        Config.loginUserWithId = null;
         console.log('token、loginuser已经清除，退出成功');
     }
     clearCache(){
@@ -173,6 +170,6 @@ export class DataApi {
         })
     }
     isIonic(){
-        return this.config.isIonic;
+        return Config.isIonic;
     }
 }

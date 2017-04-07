@@ -16,7 +16,6 @@ export class WritePage {
     tab:'share'
   };
 
-  private config:Config;
   public isLogin:boolean = false;
 
   //草稿列表
@@ -26,7 +25,6 @@ export class WritePage {
               private modalCtrl: ModalController,
               private dataApi:DataApi
               ) {
-      this.config = Config.getInstance();
   }
 
   ngOnInit(){
@@ -38,12 +36,8 @@ export class WritePage {
   }
 
   checkIsLogin(){
-    console.log(this.config.token);
-    if( this.config.token){
-      this.isLogin = true;
-    }else{
-      this.isLogin=false;
-    }
+    console.log(Config.token);
+    this.isLogin = !!Config.token;
   }
 
   getDrafts(){
